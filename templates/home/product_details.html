@@ -1,0 +1,295 @@
+{% extends "../core/base/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+        <div class="container d-flex align-items-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="">Products</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content mt-5">
+        <div class="container">
+            <div class="product-details-top">
+                <div class="row">
+                    <div class="col-md-6" style="padding: 15px;">
+                        <div class="product-gallery" style="padding: 15px;">
+                          <div class="row">
+                            <figure id="product-main-image" class="product-main-image" style="width: 100%; height: 400px; overflow: hidden; padding: 15px;">
+                              <img id="product-zoom" 
+                                   src="{{ product.image.url }}" 
+                                   data-zoom-image="{{ product.image.url }}" 
+                                   alt="{{ product.name }}" 
+                                   style="width: 100%; height: 100%; object-fit: cover;">
+                              <a href="#" id="btn-product-gallery" class="btn-product-gallery">
+                                <i class="icon-arrows"></i>
+                              </a>
+                            </figure>
+                          </div><!-- End .row -->
+                        </div><!-- End .product-gallery -->
+                      </div><!-- End .col-md-6 -->
+                      
+                      <!-- Inline script to adjust image container height on small screens -->
+                      <script>
+                        (function(){
+                          var fig = document.getElementById("product-main-image");
+                          if(window.innerWidth < 576){
+                            fig.style.height = "250px";
+                          } else {
+                            fig.style.height = "400px";
+                          }
+                        })();
+                        // Optionally, update on window resize:
+                        window.addEventListener('resize', function(){
+                          var fig = document.getElementById("product-main-image");
+                          if(window.innerWidth < 576){
+                            fig.style.height = "250px";
+                          } else {
+                            fig.style.height = "400px";
+                          }
+                        });
+                      </script>
+                      
+                    
+                    <div class="col-md-6">
+                        <div class="product-details">
+                            <h1 class="product-title">{{ product.name }}</h1><!-- End .product-title -->
+
+                            <div class="ratings-container">
+                                <div class="" style="display: flex; gap: 2px;">
+                                    {% for i in "12345"|make_list %}
+                                        {% widthratio i 1 1 as star_num %}
+                                        <svg class="rating__star" width="13px" height="12px">
+                                            <path d="M6.5 0l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z"
+                                                  fill="{% if product.reviews_in_stars|default:'0' >= star_num %}#f39c12{% else %}#ddd{% endif %}" />
+                                        </svg>
+                                    {% endfor %}
+                                </div>
+                                <span class="ratings-text">({{ product.reviews_in_stars|default:"0" }} Reviews)</span>
+                            </div>
+                            
+                            
+
+                            <div class="product-price">
+                               €{{ product.price|floatformat:2|intcomma }}
+                            </div><!-- End .product-price -->
+
+                            <div class="product-content">
+                                <p>{{ product.description }}</p>
+                            </div><!-- End .product-content -->
+
+                            <div class="details-filter-row details-row-size">
+                                <label for="qty">Qty:</label>
+                                <div class="product-details-quantity">
+                                    <input type="number" id="qty" class="form-control" value="{{ product.quantity }}" min="1" max="10" step="1" data-decimals="0" required>
+                                </div><!-- End .product-details-quantity -->
+                            </div><!-- End .details-filter-row -->
+
+                            <div class="product-details-action">
+                                <button class="btn-product btn-cart add-to-cart-btn" type="button"
+                            data-product-id="{{ product.id }}"
+                            data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
+                            data-csrf-token="{{ csrf_token }}">
+                        <span class="btn-text">add to cart</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    </button>
+                             
+                            </div><!-- End .product-details-action -->
+
+                            <div class="product-details-footer"
+                                <div class="product-cat">
+                                    <span>Category:</span>
+                                    <a href="#">{{ product.product_category }}</a>
+                                </div><!-- End .product-cat -->
+
+                                
+                            </div><!-- End .product-details-footer -->
+                        </div><!-- End .product-details -->
+                    </div><!-- End .col-md-6 -->
+
+                    
+                </div><!-- End .row -->
+            </div><!-- End .product-details-top -->
+
+            <div class="product-details-tab">
+                <ul class="nav nav-pills justify-content-center" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab" role="tab" aria-controls="product-desc-tab" aria-selected="true">Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="product-shipping-link" data-toggle="tab" href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab" aria-selected="false">Shipping & Returns</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">Reviews </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link">
+                        <div class="product-desc-content">
+                            <h3>Product Information</h3>
+                            <p>{{ product.description }}</p>
+                            <!-- Optionally, add more product info if available -->
+                        </div><!-- End .product-desc-content -->
+                    </div><!-- End .tab-pane -->
+
+                    <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel" aria-labelledby="product-shipping-link">
+                        <div class="product-desc-content">
+                            <h3>Delivery & Returns</h3>
+                            <p>We deliver to over 100 countries. For full details, please view our <a href="#">Delivery Information</a>.<br>
+                               If you need to return an item, you can do so within 30 days. Please see our <a href="#">Returns Information</a> for more details.
+                            </p>
+                        </div><!-- End .product-desc-content -->
+                    </div><!-- End .tab-pane -->
+
+                    <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
+                        <div class="reviews">
+                            <h3>Reviews ({{ reviews.count }})</h3>
+                            <!-- Reviews will be dynamically added here -->
+                            <div class="reviews-list">
+                                {% for review in reviews %}
+                                <div class="review">
+                                    <div class="row no-gutters">
+                                        <div class="col-auto">
+                                            <h4><a href="#">{{ review.name }}</a></h4>
+                                            <div class="ratings-container">
+                                                <div class="ratings">
+                                                    <div class="ratings-val" style="width: {{ review.stars|floatformat:0 }}0%;"></div>
+                                                </div>
+                                            </div>
+                                            <span class="review-date">{{ review.created_at|date:"d M, Y" }}</span>
+                                        </div>
+                                        <div class="col">
+                                            <h4>{{ review.title }}</h4>
+                                            <div class="review-content">
+                                                <p>{{ review.content }}</p>
+                                            </div>
+                                            <div class="review-action">
+                                                <a href="#"><i class="icon-thumbs-up"></i>Helpful ({{ review.helpful_count }})</a>
+                                                <a href="#"><i class="icon-thumbs-down"></i>Unhelpful ({{ review.unhelpful_count }})</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                <div class="review">
+                                    <p>No reviews yet.</p>
+                                </div>
+                                {% endfor %}
+                            </div><!-- End .reviews-list -->
+                    
+                            <div class="reviews-view__form">
+                                <h3 class="reviews-view__header">Write a Review</h3>
+                                <form method="post" enctype="multipart/form-data" class="review-form">
+                                    {% csrf_token %}
+                                    {{ form.name }}  <!-- Render the name field -->
+                                    
+                                    <div class="form-group">
+                                        <label>Rating</label>
+                                        <div class="stars">
+                                            {{ stars_html|safe }}  <!-- Render the stars HTML -->
+                                        </div>
+                                    </div>
+                    
+                                    {{ form.content }}  <!-- Render the content field -->
+                                    {{ form.image }}  <!-- Render the image upload field -->
+                                    
+                                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                                </form>
+                            </div>
+                        </div><!-- End .reviews -->
+                    </div><!-- End .tab-pane -->
+
+
+
+                </div><!-- End .tab-content -->
+            </div><!-- End .product-details-tab -->
+
+            <h2 class="title text-center mb-4">You May Also Like</h2>
+            <!-- End Product -->
+            <div class="container">
+                
+            <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" 
+            data-toggle="owl" 
+            data-owl-options='{
+                "nav": false, 
+                "dots": true,
+                "margin": 20,
+                "loop": false,
+                "responsive": {
+                    "0": { "items": 1 },
+                    "480": { "items": 2 },
+                    "768": { "items": 3 },
+                    "992": { "items": 4 }
+                }
+            }'>
+        
+            {% for product in related_products %}
+            <div class="product product-11 text-center">
+                <figure class="product-media">
+                    <a href="{% url 'product_detail' product.id %}">
+                        <img style="height: 250px; display: flex; align-items: center; justify-content: center;" 
+                            src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                    </a>
+                 
+                </figure>
+                <div class="product-body">
+                    <div class="product-cat">
+                        <a href="#">{{ product.product_category }}</a>
+                    </div>
+                    <h3 class="product-title">
+                        <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                    </h3>
+                    <div class="product-price">
+                       €{{ product.price|floatformat:2|intcomma }}
+                    </div>
+                    
+                    <!-- ⭐ Star Rating System (Fixed) -->
+                    <div class="ratings-container">
+                        <div class="" style="display: flex; gap: 2px;">
+                            {% for i in "12345"|make_list %}
+                                {% widthratio i 1 1 as star_num %}
+                                <svg class="rating__star" width="13px" height="12px">
+                                    <path d="M6.5 0l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z"
+                                          fill="{% if product.reviews_in_stars|default:'0' >= star_num %}#f39c12{% else %}#ddd{% endif %}" />
+                                </svg>
+                            {% endfor %}
+                        </div>
+                        <span class="ratings-text">({{ product.reviews_in_stars|default:"0" }} Reviews)</span>
+                    </div>
+                                    
+                    
+                    <!-- ⭐ End Star Rating -->
+        
+                </div>
+                <div class="product-action">
+                    <button class="btn-product btn-cart add-to-cart-btn" type="button"
+                            data-product-id="{{ product.id }}"
+                            data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
+                            data-csrf-token="{{ csrf_token }}">
+                        <span class="btn-text">add to cart</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    </button>
+                </div>
+                
+              </div>
+              {% endfor %}
+            </div>
+        
+            </div>
+
+        </div><!-- End .container -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->
+
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+
+
+    {% endblock contents %}     

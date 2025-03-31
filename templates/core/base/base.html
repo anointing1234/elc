@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AUDIOVISUALES MORVEDRE SL | Innovative Electronic Solutions</title>
+    <meta name="keywords" content="audiovisuales, electronic solutions, audiovisual equipment">
+    <meta name="description" content="Discover innovative electronic solutions with AUDIOVISUALES MORVEDRE SL. We specialize in high-quality audiovisual equipment and technology.">
+    <meta name="author" content="AUDIOVISUALES MORVEDRE SL">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/logo/favicon.ico' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/logo/favicon.ico' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/logo/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'assets/logo/favicon.ico' %}">
+    <link rel="mask-icon" href="{% static 'assets/logo/favicon.ico' %}" color="#666666">
+    <link rel="shortcut icon" href="{% static 'assets/logo/favicon.ico' %}">
+    <meta name="apple-mobile-web-app-title" content="AUDIOVISUALES MORVEDRE SL">
+    <meta name="application-name" content="AUDIOVISUALES MORVEDRE SL">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="{% static 'assets/images/icons/browserconfig.xml' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="AUDIOVISUALES MORVEDRE SL | Innovative Electronic Solutions">
+    <meta property="og:description" content="Discover our range of high-quality audiovisual equipment and services.">
+    <meta property="og:image" content="{% static 'assets/images/og-image.jpg' %}">
+    <meta property="og:url" content="https://audiovisualesmorvedresl.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AUDIOVISUALES MORVEDRE SL | Innovative Electronic Solutions">
+    <meta name="twitter:description" content="Discover our range of high-quality audiovisual equipment and services.">
+    <meta name="twitter:image" content="{% static 'assets/images/og-image.jpg' %}">
+
+    <!-- Schema.org Organization Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "AUDIOVISUALES MORVEDRE SL",
+        "url": "https://audiovisualesmorvedresl.com",
+        "logo": "https://audiovisualesmorvedresl.com{% static 'assets/logo/am_logo_black.png' %}",
+        "contactPoint": [{
+            "@type": "ContactPoint",
+            "telephone": "+34-XXX-XXX-XXX",
+            "contactType": "customer service"
+        }]
+    }
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/owl-carousel/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/magnific-popup/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/jquery.countdown.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/skins/skin-demo-2.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/demos/demo-2.css' %}">
+</head>
+
+<body>
+    <div class="page-wrapper">
+  {% include "../sections/navbar.html" %}
+  {% block contents %}{% endblock contents %}
+  {% include "../sections/footer.html" %} 
+
+
+  
+  <div class="mobile-menu-container mobile-menu-light">
+    <div class="mobile-menu-wrapper">
+        <span class="mobile-menu-close"><i class="icon-close"></i></span>
+        
+        <form action="#" method="get" class="mobile-search">
+            <label for="mobile-search" class="sr-only">Search</label>
+            <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search product ..." required>
+            <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+        </form>
+
+        <ul class="nav nav-pills-mobile nav-border-anim" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="mobile-menu-link" data-toggle="tab" href="#mobile-menu-tab" role="tab" aria-controls="mobile-menu-tab" aria-selected="true">Menu</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
+                <nav class="mobile-nav">
+                    <ul class="mobile-menu">
+                        <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'about_us' %}">About</a></li>
+                        <li><a href="{% url 'Amplifiers' %}">Amplifiers</a></li>
+                        <li><a href="{% url 'Digital' %}">Digital</a></li>
+                        <li><a href="{% url 'Loudspeakers' %}">Loudspeakers</a></li>
+                        <li><a href="{% url 'Mixer_Console' %}">Mixer Console</a></li>
+                        <li><a href="{% url 'Turntables' %}">Turntables</a></li>
+                        {% if request.user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'myorders' %}">Orders</a>
+                        </li>
+                        {% endif %}
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                        <li><a href="{% url 'authenticate' %}">Sign up</a></li>
+                        <li><a href="{% url 'authenticate' %}">Login</a></li>
+                    </ul>
+                </nav><!-- End .mobile-nav -->
+            </div><!-- End .tab-pane -->
+        </div><!-- End .tab-content -->
+    </div><!-- End .mobile-menu-wrapper -->
+</div><!-- End .mobile-menu-container -->
+
+      
+    </div><!-- End .mobile-menu-wrapper -->
+</div><!-- End .mobile-menu-container -->
+
+
+
+
+
+
+
+ <!-- Plugins JS File -->
+ <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+ <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+ <script src="{% static 'assets/js/jquery.hoverIntent.min.js' %}"></script>
+ <script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
+ <script src="{% static 'assets/js/superfish.min.js' %}"></script>
+ <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+ <script src="{% static 'assets/js/jquery.plugin.min.js' %}"></script>
+ <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+ <script src="{% static 'assets/js/jquery.countdown.min.js' %}"></script>
+ <!-- Main JS File -->
+ <script src="{% static 'assets/js/main.js' %}"></script>
+ <script src="{% static 'assets/js/demos/demo-2.js' %}"></script>
+
+
+ 
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 -->
+ <script>
+    document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            const btn = this;
+            const spinner = btn.querySelector(".spinner-border");
+            const btnText = btn.querySelector(".btn-text");
+            const productId = btn.getAttribute("data-product-id");
+            const csrfToken = btn.getAttribute("data-csrf-token");
+            const addToCartUrl = btn.getAttribute("data-add-to-cart-url");
+
+            if (!addToCartUrl || !productId) {
+                console.error("Product ID or Add-to-Cart URL is missing");
+                return;
+            }
+
+            // ✅ Show spinner
+            spinner.classList.remove("d-none");
+            btnText.textContent = "";
+            btn.disabled = true;
+
+            fetch(addToCartUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrfToken
+                },
+                body: JSON.stringify({ product_id: productId })
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    // Handle non-200 responses
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.error || "Failed to add to cart");
+                    });
+                }
+            })
+            .then(data => {
+                btn.disabled = false;
+                spinner.classList.add("d-none");
+
+                // 🎉 Show SweetAlert success message with reload
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Added to Cart!',
+                    text: 'The product has been added to your cart.',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.reload(); // ✅ Reload page after alert closes
+                });
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                btn.disabled = false;
+                spinner.classList.add("d-none");
+
+                // ❌ Show SweetAlert error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    text: error.message, // Show the error message from the server
+                });
+            });
+        });
+    });
+</script>
+
+</body>
+
+
+</html>        
+

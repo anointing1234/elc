@@ -1,0 +1,133 @@
+<html>
+<head>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007BFF;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Order Summary Section */
+        .order-summary {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .order-summary h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        .footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h3>Order Confirmation - Order Number: {{ order.order_id }} Confirmed</h3>
+        <h4>AUDIOVISUALES MORVEDRE SL</h4> <!-- Updated site name -->
+    </div>
+    <!-- Order Summary Section -->
+    <div class="order-summary">
+        <h2>Product Details:</h2>
+        <table>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            {% for product in formatted_product_details %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.price }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h3>Shipping fee: ${{ order.shipping_fee }}</h3>
+        <h3>Total Price: ${{ order.total_price }}</h3>
+    </div>
+
+    <!-- Delivery Date Section -->
+    <div class="delivery-date">
+        <h2>Delivery Date :</h2>
+        <p>{{ formatted_delivery_date }}</p>
+    </div>
+
+    <div class="view-order-button">
+        <a href="https://audiovisualesmorvedresl.com/Accounts/orders/{{ order.order_id }}/" class="button">View Order</a>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>Thank you for your order!</p>
+        <p>If you have any questions, feel free to <a href="mailto:Info@audiovisualesmorvedresl.com">contact us</a>.</p>
+    </div>
+
+</body>
+</html>

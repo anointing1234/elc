@@ -1,0 +1,297 @@
+{% extends "../core/base/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+        <main class="main">
+        	<div class="page-header text-center" style="background-image: url('{% static 'assets/images/page-header-bg.jpg' %}')">
+        		<div class="container">
+        			<h1 class="page-title">Checkout<span></span></h1>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+            	<div class="checkout">
+                {% if cart_items %}
+	                <div class="container">
+            			<form action="#">
+		                	<div class="row">
+		                		<div class="col-lg-9">
+                        
+		                			<h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
+		                		
+	            						<label>Country *</label>
+	            						<input type="text" id="checkout-state" class="form-control" required>
+
+	            						<label>Street address *</label>
+	            						<input type="text" id="checkout-street-address" class="form-control" placeholder="House number and Street name" required>
+	            						<input type="text" id="checkout-address" class="form-control" placeholder="Appartments, suite, unit etc ..." required>
+
+	            						<div class="row">
+		                					<div class="col-sm-6">
+		                						<label>Town / City *</label>
+		                						<input id="checkout-city" type="text" class="form-control" required>
+		                					</div><!-- End .col-sm-6 -->
+
+		                					<div class="col-sm-6">
+		                						<label>State / County *</label>
+		                						<input id="checkout-state" type="text" class="form-control" required>
+		                					</div><!-- End .col-sm-6 -->
+		                				</div><!-- End .row -->
+
+		                				<div class="row">
+		                					<div class="col-sm-6">
+		                						<label>Postcode / ZIP *</label>
+		                						<input id="checkout-postcode" type="text" class="form-control" required>
+		                					</div><!-- End .col-sm-6 -->
+
+		                					<div class="col-sm-6">
+		                						<label>Phone *</label>
+		                						<input id="checkout-phone" type="tel" class="form-control" required>
+		                					</div><!-- End .col-sm-6 -->
+		                				</div><!-- End .row -->
+
+	                					<label>Email address *</label>
+	        							<input id="checkout-email" type="email" class="form-control" required>
+
+
+		                		</div><!-- End .col-lg-9 -->
+		                		<aside class="col-lg-3">
+
+		                			<div class="summary">
+		                				<h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+
+		                				<table class="table table-summary">
+		                					<thead>
+		                						<tr>
+		                							<th>Product</th>
+		                							<th>Total</th>
+		                						</tr>
+		                					</thead>
+
+		                					<tbody>
+                                                {% for item in cart_items %}
+		                						<tr>
+		                							<td><a href="#">{{ item.product.name|upper }} × {{ item.quantity }}</a></td>
+		                							<td>${{ item.total_price|floatformat:2|intcomma }}</td>
+		                						</tr>
+                                                {% endfor %}
+		                						<tr>
+		                							<td>Shipping fee:</td>
+		                							<td>${{ shipping_fee|floatformat:2|intcomma }}</td>
+		                						</tr>
+		                						<tr class="summary-total">
+		                							<td>Total:</td>
+		                							<td>${{ total_with_shipping|floatformat:2|intcomma  }}</td>
+		                						</tr><!-- End .summary-total -->
+		                					</tbody>
+		                				</table><!-- End .table table-summary -->
+
+		                				<div class="accordion-summary" id="accordion-payment">
+										    <div class="card">
+										        <div class="card-header" id="heading-1">
+										            <h2 class="card-title">
+										                <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+										                    Direct bank transfer
+										                </a>
+										            </h2>
+										        </div><!-- End .card-header -->
+										        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
+										            <div class="card-body">
+										                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
+										            </div><!-- End .card-body -->
+										        </div><!-- End .collapse -->
+										    </div><!-- End .card -->
+										</div><!-- End .accordion -->
+                                            <button type="button" class="btn btn-outline-primary-2 btn-order btn-block" id="place-order-btn">Place Order</button>
+		                			</div><!-- End .summary -->
+		                		</aside><!-- End .col-lg-3 -->
+		                	</div><!-- End .row -->
+            			</form>
+	                </div><!-- End .container -->
+                {% endif %}
+                </div><!-- End .checkout -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+
+     
+<meta name="csrf-token" content="{{ csrf_token }}">
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    document.getElementById('place-order-btn').addEventListener('click', function () {
+        const requiredFields = [
+            { id: 'checkout-street-address', name: 'Street Address' },
+            { id: 'checkout-city', name: 'Town / City' },
+            { id: 'checkout-state', name: 'State / County' },
+            { id: 'checkout-postcode', name: 'Postcode / ZIP' },
+            { id: 'checkout-email', name: 'Email address' },
+            { id: 'checkout-phone', name: 'Phone' },
+        ];
+
+        let isValid = true;
+        let missingFields = [];
+
+        // Validate required fields
+        requiredFields.forEach((field) => {
+            const fieldValue = document.getElementById(field.id).value.trim();
+            if (!fieldValue) {
+                isValid = false;
+                missingFields.push(field.name);
+            }
+        });
+
+        if (!isValid) {
+            // Show error message with missing fields
+            Swal.fire({
+                title: 'Incomplete Billing Details',
+                html: `
+                    <p>Please fill in the following required fields:</p>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        ${missingFields.map((field) => `<li style="margin-bottom: 5px;">- ${field}</li>`).join('')}
+                    </ul>
+                `,
+                icon: 'warning',
+                confirmButtonText: 'OK',
+            });
+            return; // Stop further execution
+        }
+
+        const placeOrderBtn = document.getElementById('place-order-btn');
+        const originalBtnText = placeOrderBtn.innerHTML;
+
+        // Show loader animation
+        placeOrderBtn.innerHTML = `
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Processing...
+        `;
+        placeOrderBtn.disabled = true;
+
+        // Collect form data
+        const billingDetails = {
+            street_address: document.getElementById('checkout-street-address').value.trim(),
+            apartment: document.getElementById('checkout-address').value.trim(),
+            city: document.getElementById('checkout-city').value.trim(),
+            state: document.getElementById('checkout-state').value.trim(),
+            postcode: document.getElementById('checkout-postcode').value.trim(),
+            email: document.getElementById('checkout-email').value.trim(),
+            phone: document.getElementById('checkout-phone').value.trim(),
+        };
+
+        const cartDetails = {
+            products: [
+                {% for item in cart_items %}
+                {
+                    id: "{{ item.product.id }}",
+                    name: "{{ item.product.name }}",
+                    quantity: "{{ item.quantity }}",
+                    price: "{{ item.product.price }}",
+                    image: "{{ item.product.image.url }}",
+                },
+                {% endfor %}
+            ],
+            shipping_fee: "{{ shipping_fee }}",  // Ensure shipping fee is included
+        };
+
+        // Total price calculation
+        const totalAmountToPay = {{ total_with_shipping|floatformat:2|default:0 }};
+        const formattedTotalAmount = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+        }).format(totalAmountToPay);
+
+        // Continue with the order process
+        fetch("{% url 'get_bank_details' %}")
+            .then((response) => response.json())
+            .then((bankDetails) => {
+                Swal.fire({
+                    title: "<h3 style='font-size: 18px; margin: 0;'>Bank Transfer Details</h3>",
+                    html: `
+                        <div style="font-size: 14px; text-align: center;">
+                            <p><strong>Bank Name:</strong> ${bankDetails.bank_name}</p>
+                            <p><strong>Branch:</strong> ${bankDetails.branch_name}</p>
+                            <p><strong>Account Number:</strong> ${bankDetails.account_number}</p>
+                            <p><strong>Account Holder:</strong> ${bankDetails.account_holder}</p>
+                            <p><strong>SWIFT Code:</strong> ${bankDetails.swift_code}</p>
+                            <hr>
+                            <p><strong>Total Amount to Pay:</strong> ${formattedTotalAmount}</p>
+                        </div>
+                    `,
+                    icon: "info",
+                    showCancelButton: true,
+                    confirmButtonText: "Confirm Transfer",
+                    cancelButtonText: "Cancel",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Processing...',
+                            html: '<div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>',
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                        });
+                        fetch("{% url 'create_order' %}", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-CSRFToken": csrfToken,  // Use the CSRF token from the variable
+                            },
+                            body: JSON.stringify({
+                                billingDetails: billingDetails,
+                                cartDetails: cartDetails,
+                            }),
+                        })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                if (data.success) {
+                                    window .location.href = "{% url 'order_success' %}";
+                                } else {
+                                    Swal.fire("Error", "Something went wrong. Please try again.", "error");
+                                }
+                            })
+                            .catch(() => {
+                                Swal.fire("Error", "An unexpected error occurred.", "error");
+                            })
+                            .finally(() => {
+                                placeOrderBtn.innerHTML = originalBtnText;
+                                placeOrderBtn.disabled = false;
+                            });
+                    } else {
+                        placeOrderBtn.innerHTML = originalBtnText;
+                        placeOrderBtn.disabled = false;
+                    }
+                });
+            })
+            .catch(() => {
+                Swal.fire("Error", "Failed to fetch bank details. Please try again later.", "error");
+            })
+            .finally(() => {
+                placeOrderBtn.innerHTML = originalBtnText;
+                placeOrderBtn.disabled = false;
+            });
+    });
+</script>
+
+
+
+    {% endblock contents %}  

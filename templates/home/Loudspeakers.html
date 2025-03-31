@@ -1,0 +1,197 @@
+
+{% extends "../core/base/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+<main class="main">
+    <div class="page-header text-center" style="background-color:black;">
+        <div class="container">
+            <h1 class="page-title text-white">Loudspeakers </h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Loudspeakers</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="toolbox">
+                        <div class="toolbox-left">
+                            <div class="toolbox-info">
+                                Showing <span>{{ Loudspeakers_products|length }} of {{ Loudspeakers_products|length }}</span> Products
+                            </div><!-- End .toolbox-info -->
+                        </div><!-- End .toolbox-left -->
+
+                        <div class="toolbox-right">
+                            <div class="toolbox-sort">
+                                <label for="sortby">Sort by:</label>
+                                <div class="select-custom">
+                                    <select name="sortby" id="sortby" class="form-control">
+                                        <option value="popularity" selected="selected">Most Popular</option>
+                                        <option value="rating">Most Rated</option>
+                                        <option value="date">Date</option>
+                                    </select>
+                                </div>
+                            </div><!-- End .toolbox-sort -->
+                        </div><!-- End .toolbox-right -->
+                    </div><!-- End .toolbox -->
+
+                    <div class="products mb-3">
+                        <div class="row justify-content-center">
+                            {% for product in Loudspeakers_products %}
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                                <div class="product product-7 text-center">
+                                    <figure class="product-media">
+                                        
+                                        <a href="product/{{ product.id }}">
+                                            <img style="height: 250px; display: flex; align-items: center; justify-content: center;" src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                                        </a>
+
+                                   
+
+                                        <div class="product-action">
+                                            <button class="btn-product btn-cart add-to-cart-btn" type="button"
+                                            data-product-id="{{ product.id }}"
+                                            data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
+                                            data-csrf-token="{{ csrf_token }}">
+                                        <span class="btn-text">add to cart</span>
+                                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                    </button>
+                                        </div><!-- End .product-action -->
+                                    </figure><!-- End .product-media -->
+
+                                    <div class="product-body">
+                                      
+                                        <h3 class="product-title"><a href="product/{{ product.id }}">{{ product.name }}</a></h3><!-- End .product-title -->
+                                        <div class="product-price">
+                                           €{{ product.price }}
+                                        </div><!-- End .product-price -->
+                                        <div class="ratings-container">
+                                            <div class="" style="display: flex; gap: 2px;">
+                                                {% for i in "12345"|make_list %}
+                                                    {% widthratio i 1 1 as star_num %}
+                                                    <svg class="rating__star" width="13px" height="12px">
+                                                        <path d="M6.5 0l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z"
+                                                              fill="{% if product.reviews_in_stars|default:'0' >= star_num %}#f39c12{% else %}#ddd{% endif %}" />
+                                                    </svg>
+                                                {% endfor %}
+                                            </div>
+                                            <span class="ratings-text">({{ product.reviews_in_stars|default:"0" }} Reviews)</span>
+                                        </div>
+                                    </div><!-- End .product-body -->
+                                </div><!-- End .product -->
+                            </div><!-- End .col-sm-6 col-lg-4 -->
+                            {% empty %}
+                                <p>No products available in this category.</p>
+                            {% endfor %}
+                        </div><!-- End .row -->
+                    </div><!-- End .products -->
+
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            {% if Loudspeakers_products.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link page-link-prev" href="?page={{ Loudspeakers_products.previous_page_number }}" aria-label="Previous">
+                                        <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% for num in Loudspeakers_products.paginator.page_range %}
+                                {% if Loudspeakers_products.number == num %}
+                                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ num }}</a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if Loudspeakers_products.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link page-link-next" href="?page={{ Loudspeakers_products.next_page_number }}" aria-label="Next">
+                                        Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div><!-- End .col-lg-9 -->
+
+                <!-- Sidebar Filters -->
+                <aside class="col-lg-3 order-lg-first">
+                    <div class="sidebar sidebar-shop">
+                        <div class="widget widget-clean">
+                            <label>Filters:</label>
+                      
+                        </div><!-- End .widget widget-clean -->
+
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title">
+                                <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
+                                    Category
+                                </a>
+                            </h3><!-- End .widget-title -->
+
+
+                            <div class="collapse show" id="widget-1">
+                                <div class="widget-body">
+                                    <div class="filter-items filter-items-count">
+                                        <div class="filter-item">
+                                            <div class="custom-control ">
+                                                <a href="{% url 'Amplifiers' %}" class="custom-control-label" for="cat-1">Amplifiers</a>
+                                            </div><!-- End . -->
+                                        </div><!-- End .filter-item -->
+                                        <div class="filter-item">
+                                            <div class="custom-control ">
+                                                <a href="{% url 'Digital' %}" class="custom-control-label" for="cat-1">Digital</a>
+                                            </div><!-- End . -->
+                                        </div><!-- End .filter-item -->
+                                        <div class="filter-item">
+                                            <div class="custom-control ">
+                                                <a href="{% url 'Loudspeakers' %}" class="custom-control-label" for="cat-1">Loudspeakers</a>
+                                            </div><!-- End . -->
+                                        </div><!-- End .filter-item -->
+                                        <div class="filter-item">
+                                            <div class="custom-control ">
+                                                <a href="{% url 'Mixer_Console' %}" class="custom-control-label" for="cat-1">Mixer Console</a>
+                                            </div><!-- End . -->
+                                        </div><!-- End .filter-item -->
+                                        <div class="filter-item">
+                                            <div class="custom-control ">
+                                                <a href="{% url 'Turntables' %}" class="custom-control-label" for="cat-1">Turntables</a>
+                                            </div><!-- End . -->
+                                        </div><!-- End .filter-item -->
+
+                                        <!-- Add more categories as needed -->
+                                    </div><!-- End .filter-items -->
+                                </div><!-- End .widget-body -->
+                            </div><!-- End .collapse -->
+                        </div><!-- End .widget -->
+                    </div><!-- End .sidebar sidebar-shop -->
+                </aside><!-- End .col-lg-3 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->
+
+
+
+
+        
+
+        
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+
+
+
+    {% endblock contents %}     
