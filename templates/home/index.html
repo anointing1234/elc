@@ -201,7 +201,7 @@
                                  <!-- End .product-action-vertical -->
                                 </figure><!-- End .product-media -->
                                 <div class="product-body">
-                                    <h3 class="product-title responsive-product-title"><a href="product.html">{{ product.name }}</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title responsive-product-title"><a href="  {% url 'product_detail' product.id %}">{{ product.name }}</a></h3><!-- End .product-title -->
                                     <div class="product-price responsive-product-price">
                                        €{{ product.price|floatformat:2|intcomma }}
                                     </div><!-- End .product-price -->
@@ -247,7 +247,7 @@
                                  <!-- End .product-action-vertical -->
                                 </figure><!-- End .product-media -->
                                 <div class="product-body">
-                                    <h3 class="product-title responsive-product-title"><a href="product.html">{{ product.name }}</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title responsive-product-title"><a href="  {% url 'product_detail' product.id %}">{{ product.name }}</a></h3><!-- End .product-title -->
                                     <div class="product-price responsive-product-price">
                                        €{{ product.price|floatformat:2|intcomma }}
                                     </div><!-- End .product-price -->
@@ -296,7 +296,7 @@
                                  <!-- End .product-action-vertical -->
                                 </figure><!-- End .product-media -->
                                 <div class="product-body">
-                                    <h3 class="product-title responsive-product-title"><a href="product.html">{{ product.name }}</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title responsive-product-title"><a href="  {% url 'product_detail' product.id %}">{{ product.name }}</a></h3><!-- End .product-title -->
                                     <div class="product-price responsive-product-price">
                                        €{{ product.price|floatformat:2|intcomma }}
                                     </div><!-- End .product-price -->
@@ -329,7 +329,7 @@
                                     <h4>Limited Stock</h4>
                                     <h2>Deal of the Day</h2>
             
-                                    <h3 class="product-title"><a href="product.html">Sonic Boom Loudspeakers</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="  {% url 'product_detail' product.id %}">Sonic Boom Loudspeakers</a></h3><!-- End .product-title -->
             
                                     <div class="product-price">
                                         <span class="new-price">$24,900.00</span>
@@ -344,7 +344,7 @@
                                     </a>
                                 </div><!-- End .deal-content -->
                                 <div class="deal-image">
-                                    <a href="product.html">
+                                    <a href="  {% url 'product_detail' product.id %}">
                                         <img src="{% static 'assets/images/products/sunic_boom.jpg' %}" alt="Sonic Boom Loudspeakers">
                                     </a>
                                 </div><!-- End .deal-image -->
