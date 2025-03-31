@@ -103,8 +103,14 @@
                         </li>
                         {% endif %}
                         <li><a href="{% url 'contact' %}">Contact</a></li>
+                        {% if not request.user.is_authenticated %}
                         <li><a href="{% url 'authenticate' %}">Sign up</a></li>
                         <li><a href="{% url 'authenticate' %}">Login</a></li>
+                        {% else %}
+                        <li>
+                            <a href="{% url 'logout_view' %}">Logout</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </nav><!-- End .mobile-nav -->
             </div><!-- End .tab-pane -->
