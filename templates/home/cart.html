@@ -133,10 +133,6 @@
                             <td>Shipping fee:</td>
                             <td>${{ shipping_total|floatformat:2|intcomma }}</td>
                         </tr>
-                        <tr class="summary-shipping-estimate">
-                            <td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
-                            <td>&nbsp;</td>
-                        </tr>
                         <tr class="summary-total">
                             <td>Total:</td>
                             <td>${{ total|floatformat:2|intcomma }}</td>
@@ -171,61 +167,61 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
 <script>
-   €(document).ready(function() {
-        // Increase quantity
-       €('.increase-quantity').on('click', function() {
-            var itemId =€(this).data('item-id'); // Get the item ID
-           €.ajax({
-                url: "{% url 'increase' 0 %}".replace('0', itemId), // Replace '0' with itemId dynamically
-                method: 'POST',
-                data: {
-                    csrfmiddlewaretoken: '{{ csrf_token }}' // CSRF token for POST request
-                },
-                success: function() {
-                    setTimeout(function() {
-                        location.reload(); // Reload the page after a slight delay
-                    }, 100); // Delay in milliseconds
-                }
-            });
-        });
-
-        // Decrease quantity
-       €('.decrease-quantity').on('click', function() {
-            var itemId =€(this).data('item-id'); // Get the item ID
-           €.ajax({
-                url: "{% url 'decrease' 0 %}".replace('0', itemId), // Replace '0' with itemId dynamically
-                method: 'POST',
-                data: {
-                    csrfmiddlewaretoken: '{{ csrf_token }}' // CSRF token for POST request
-                },
-                success: function() {
-                    setTimeout(function() {
-                        location.reload(); // Reload the page after a slight delay
-                    }, 100); // Delay in milliseconds
-                }
-            });
-        });
-
-        // Remove item from cart
-       €('.remove-item').on('click', function() {
-            var itemId =€(this).data('item-id'); // Get the item ID
-           €.ajax({
-                url: "{% url 'remove' 0 %}".replace('0', itemId), // Replace '0' with itemId dynamically
-                method: 'POST',
-                data: {
-                    csrfmiddlewaretoken: '{{ csrf_token }}' // CSRF token for POST request
-                },
-                success: function() {
-                    setTimeout(function() {
-                        location.reload(); // Reload the page after a slight delay
-                    }, 100); // Delay in milliseconds
-                }
-            });
-        });
-    });
-</script>
+    $(document).ready(function() {
+         // Increase quantity
+        $('.increase-quantity').on('click', function() {
+             var itemId = $(this).data('item-id'); // Get the item ID
+            $.ajax({
+                 url: "{% url 'increase' 0 %}".replace('0', itemId), // Replace '0' with itemId dynamically
+                 method: 'POST',
+                 data: {
+                     csrfmiddlewaretoken: '{{ csrf_token }}' // CSRF token for POST request
+                 },
+                 success: function() {
+                     setTimeout(function() {
+                         location.reload(); // Reload the page after a slight delay
+                     }, 100); // Delay in milliseconds
+                 }
+             });
+         });
+ 
+         // Decrease quantity
+        $('.decrease-quantity').on('click', function() {
+             var itemId = $(this).data('item-id'); // Get the item ID
+            $.ajax({
+                 url: "{% url 'decrease' 0 %}".replace('0', itemId), // Replace '0' with itemId dynamically
+                 method: 'POST',
+                 data: {
+                     csrfmiddlewaretoken: '{{ csrf_token }}' // CSRF token for POST request
+                 },
+                 success: function() {
+                     setTimeout(function() {
+                         location.reload(); // Reload the page after a slight delay
+                     }, 100); // Delay in milliseconds
+                 }
+             });
+         });
+ 
+         // Remove item from cart
+        $('.remove-item').on('click', function() {
+             var itemId = $(this).data('item-id'); // Get the item ID
+            $.ajax({
+                 url: "{% url 'remove' 0 %}".replace('0', itemId), // Replace '0' with itemId dynamically
+                 method: 'POST',
+                 data: {
+                     csrfmiddlewaretoken: '{{ csrf_token }}' // CSRF token for POST request
+                 },
+                 success: function() {
+                     setTimeout(function() {
+                         location.reload(); // Reload the page after a slight delay
+                     }, 100); // Delay in milliseconds
+                 }
+             });
+         });
+     });
+ </script>
+ 
 
 
     {% endblock contents %}       
