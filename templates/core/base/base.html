@@ -34,7 +34,7 @@
     <meta name="twitter:title" content="AUDIOVISUALES MORVEDRE SL | Innovative Electronic Solutions">
     <meta name="twitter:description" content="Discover our range of high-quality audiovisual equipment and services.">
     <meta name="twitter:image" content="{% static 'assets/images/og-image.jpg' %}">
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- Schema.org Organization Data -->
     <script type="application/ld+json">
     {
@@ -95,6 +95,9 @@
                         <li>
                             <a href="{% url 'refund_policy' %}" >Refund Policy</a>
                         </li>
+                        <li>
+                            <a href="{% url 'Digital' %}" >Electronic Store</a>
+                        </li>
                         <li><a href="{% url 'Amplifiers' %}">Amplifiers</a></li>
                         <li><a href="{% url 'Digital' %}">Digital</a></li>
                         <li><a href="{% url 'Loudspeakers' %}">Loudspeakers</a></li>
@@ -107,8 +110,6 @@
                         {% endif %}
                         <li><a href="{% url 'contact' %}">Contact</a></li>
                         {% if not request.user.is_authenticated %}
-                        <li><a href="{% url 'authenticate' %}">Sign up</a></li>
-                        <li><a href="{% url 'authenticate' %}">Login</a></li>
                         {% else %}
                         <li>
                             <a href="{% url 'logout_view' %}">Logout</a>
@@ -145,10 +146,8 @@
  <script src="{% static 'assets/js/main.js' %}"></script>
  <script src="{% static 'assets/js/demos/demo-2.js' %}"></script>
 
-
- 
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 -->
- <script>
+<script>
     document.querySelectorAll(".add-to-cart-btn").forEach(button => {
         button.addEventListener("click", function () {
             const btn = this;
@@ -206,16 +205,88 @@
                 btn.disabled = false;
                 spinner.classList.add("d-none");
 
-                // ❌ Show SweetAlert error message
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops!',
-                    text: error.message, // Show the error message from the server
-                });
+                // Check if the error message indicates that login is required
+                if (error.message === "Login is required to add items to the cart.") {
+                    // Redirect to the authentication URL
+                    window.location.href = "{% url 'authenticate' %}"; // Replace with your actual authentication URL
+                } else {
+                    // ❌ Show SweetAlert error message
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops!',
+                        text: error.message, // Show the error message from the server
+                    });
+                }
             });
         });
     });
 </script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>                
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Random names (30 names)
+        const names = [
+            "Toby", "Sarah", "James", "Emily", "Michael", "Jessica", "Daniel", "Sophia", "Chris", "Olivia",
+            "William", "Emma", "Benjamin", "Ava", "Alexander", "Isabella", "Ethan", "Mia", "Matthew", "Charlotte",
+            "Henry", "Amelia", "Samuel", "Harper", "Joseph", "Evelyn", "David", "Abigail", "Andrew", "Madison"
+        ];
+
+        // Random product prices (higher values for electronics)
+        const amounts = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1200, 1500, 2000];   
+        
+        // Toast positions
+        const positions = [
+            { gravity: "top", position: "left" },
+            { gravity: "top", position: "right" },
+            { gravity: "bottom", position: "left" },
+            { gravity: "bottom", position: "right" }
+        ];
+
+        function showFakeAddToCart() {
+            // Pick random name and amount
+            let name = names[Math.floor(Math.random() * names.length)];
+            let amount = amounts[Math.floor(Math.random() * amounts.length)];
+            // Format the amount with commas
+            let formattedAmount = amount.toLocaleString();
+            let position = positions[Math.floor(Math.random() * positions.length)];
+
+            // Create Toastify notification
+            Toastify({
+                text: `🛒 ${name} added an item worth $${formattedAmount} to the cart!`,
+                duration: 5000, // Display time
+                gravity: position.gravity, // "top" or "bottom"
+                position: position.position, // "left" or "right"
+                backgroundColor: "#fff", // White background
+                className: "custom-toast", // Custom class
+                stopOnFocus: false, // Do not pause on hover
+                style: {
+                    color: "#000", // Black text
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    borderRadius: "8px",
+                    padding: "12px 20px",
+                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)"
+                }
+            }).showToast();
+        }
+
+        // Run fake additions to cart automatically every 10 seconds
+        function startFakeAdditions() {
+            showFakeAddToCart(); // Show first notification immediately
+            setInterval(() => {
+                showFakeAddToCart();
+            }, 8000); // Interval set to 8 seconds (8000ms)
+        }
+
+        startFakeAdditions(); // Start the function
+    });
+</script>
+
 
 </body>
 
