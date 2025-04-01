@@ -11,7 +11,7 @@
                 </button>
                 
                 <a href="{% url 'home' %}" class="logo">
-                    <img src="{% static 'assets/logo/am_logo_black2.png' %}" alt="Molla Logo" width="100" height="100">
+                    <img src="{% static 'assets/logo/am_logo_black2.webp' %}" alt="Molla Logo" width="100" height="100">
                 </a>
             </div><!-- End .header-left -->
 
@@ -95,24 +95,22 @@
                             <a href="{% url 'home' %}" class="">Home</a>
                         </li>
                         <li>
-                            <a href="{% url 'about_us' %}" >About</a>
+                            <a href="{% url 'terms_condition' %}" >About</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'refund_policy' %}" >Refund Policy</a>
                         </li>
                         <li>
                             <a href="{% url 'contact' %}">Contact</a>
                         </li>
                         {% if not request.user.is_authenticated %}
-                        <li>
-                            <a href="{% url 'authenticate' %}">Sign up</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'authenticate' %}">Login</a>
-                        </li>
+                      
                         {% else %}
                         <li>
                             <a href="{% url 'myorders' %}">Orders</a>
                         </li>
                     <li>
-                        <a href="{% url 'logout_view' %}">Logout</a>
+                        <a href="{% url 'logout_view' %}">Log out</a>
                     </li>
                   
                     {% endif %}

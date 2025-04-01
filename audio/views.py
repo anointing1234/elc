@@ -496,6 +496,12 @@ def product_search(request):
 
 
 
+def terms_view(request):
+    return render(request,'home/terms_conditions.html')
+
+def refund_view(request):
+    return render(request,'home/refund_policy.html')
+
 
       
 
