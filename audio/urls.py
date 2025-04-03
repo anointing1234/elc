@@ -6,6 +6,7 @@ from django.views.static import serve
 
 
 urlpatterns = [ 
+    path('',views.home_view,name='home'),
     path('home/',views.home_view,name='home'),
     path('product_detail/<int:product_id>/', views.product_detail, name='product_detail'),
     path('add_to_cart/<int:product_id>/',views.add_to_cart, name='add_to_cart'),
