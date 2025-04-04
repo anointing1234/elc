@@ -223,68 +223,9 @@
 </script>
 
 
+              
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>                
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Random names (30 names)
-        const names = [
-            "Toby", "Sarah", "James", "Emily", "Michael", "Jessica", "Daniel", "Sophia", "Chris", "Olivia",
-            "William", "Emma", "Benjamin", "Ava", "Alexander", "Isabella", "Ethan", "Mia", "Matthew", "Charlotte",
-            "Henry", "Amelia", "Samuel", "Harper", "Joseph", "Evelyn", "David", "Abigail", "Andrew", "Madison"
-        ];
-
-        // Random product prices (higher values for electronics)
-        const amounts = [30000,24000,4000,5000,6000,7000,8000,9000,2000,4000,12000,3000,4000,1000];   
-        
-        // Toast positions
-        const positions = [
-            { gravity: "top", position: "left" },
-            { gravity: "top", position: "right" },
-            { gravity: "bottom", position: "left" },
-            { gravity: "bottom", position: "right" }
-        ];
-
-        function showFakeAddToCart() {
-            // Pick random name and amount
-            let name = names[Math.floor(Math.random() * names.length)];
-            let amount = amounts[Math.floor(Math.random() * amounts.length)];
-            // Format the amount with commas
-            let formattedAmount = amount.toLocaleString();
-            let position = positions[Math.floor(Math.random() * positions.length)];
-
-            // Create Toastify notification
-            Toastify({
-                text: `🛒 ${name} added an item worth €${formattedAmount} to the cart!`,
-                duration: 5000, // Display time
-                gravity: position.gravity, // "top" or "bottom"
-                position: position.position, // "left" or "right"
-                backgroundColor: "#fff", // White background
-                className: "custom-toast", // Custom class
-                stopOnFocus: false, // Do not pause on hover
-                style: {
-                    color: "#000", // Black text
-                    fontSize: "14px",
-                    fontWeight: "bold",
-                    borderRadius: "8px",
-                    padding: "12px 20px",
-                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)"
-                }
-            }).showToast();
-        }
-
-        // Run fake additions to cart automatically every 10 seconds
-        function startFakeAdditions() {
-            showFakeAddToCart(); // Show first notification immediately
-            setInterval(() => {
-                showFakeAddToCart();
-            }, 8000); // Interval set to 8 seconds (8000ms)
-        }
-
-        startFakeAdditions(); // Start the function
-    });
 </script>
 
 
