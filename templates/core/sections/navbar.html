@@ -11,7 +11,7 @@
                 </button>
                 
                 <a href="{% url 'home' %}" class="logo">
-                    <img style="width:200px;" src="{% static 'assets/logo/am_logo_black2.webp' %}" alt="Molla Logo" width="100" height="100">
+                    <img style="width:200px;" src="{% static 'assets/logo/nico_black.png' %}" alt="Molla Logo" width="100" height="100">
                 </a>
             </div><!-- End .header-left -->
 
@@ -75,46 +75,47 @@
                         Browse Categories
                     </a>
                     <div class="dropdown-menu">
-                        <nav class="side-nav">
-                            <ul class="menu-vertical sf-arrows">
-                                <li class="item-lead"><a href="{% url 'Amplifiers' %}">Amplifiers</a></li>
-                                <li class="item-lead"><a href="{% url 'Digital' %}">Digital</a></li>
-                                <li class="item-lead"><a href="{% url 'Loudspeakers' %}">Loudspeakers</a></li>
-                                <li class="item-lead"><a href="{% url 'Mixer_Console' %}">Mixer Console</a></li>
-                                <li class="item-lead"><a href="{% url 'Turntables' %}">Turntables</a></li>
-                            </ul><!-- End .menu-vertical -->
-                        </nav><!-- End .side-nav -->
+                     <nav class="side-nav">
+                        <ul class="menu-vertical sf-arrows">
+                            <li class="item-lead"><a href="{% url 'category_products' 'ultrabook' %}">Ultrabooks</a></li>
+                            <li class="item-lead"><a href="{% url 'category_products' 'gaming' %}">Gaming Laptops</a></li>
+                            <li class="item-lead"><a href="{% url 'category_products' 'business' %}">Business Laptops</a></li>
+                            <li class="item-lead"><a href="{% url 'category_products' 'convertible' %}">2-in-1 Convertibles</a></li>
+                            <li class="item-lead"><a href="{% url 'category_products' 'chromebook' %}">Chromebooks</a></li>
+                            <li class="item-lead"><a href="{% url 'category_products' 'budget' %}">Budget Laptops</a></li>
+                        </ul><!-- End .menu-vertical -->
+                    </nav><!-- End .side-nav -->
+
                     </div><!-- End .dropdown-menu -->
                 </div><!-- End .category-dropdown -->
             </div><!-- End .header-left -->
 
+
+
             <div class="header-center">
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
-                        <li class="megamenu-container active">
-                            <a href="{% url 'home' %}" class="">Home</a>
+                        <li class="megamenu-container {% if request.path == home_url %}active{% endif %}">
+                            <a href="{{ home_url }}">Home</a>
+                        </li>
+                        <li class="{% if request.path == about_url %}active{% endif %}">
+                            <a href="{{ about_url }}" >About Us</a>
+                        </li>
+                        <li class="{% if request.path == refund_url %}active{% endif %}">
+                            <a href="{{ refund_url }}" >Refund Policy</a>
                         </li>
                         <li>
-                            <a href="{% url 'terms_condition' %}" >About</a>
+                            <a href="{% url 'category_products' 'ultrabook' %}" >Electronic Store</a>
                         </li>
-                        <li>
-                            <a href="{% url 'refund_policy' %}" >Refund Policy</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'Digital' %}" >Electronic Store</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'contact' %}">Contact</a>
+                        <li class="{% if request.path == contact_url %}active{% endif %}">
+                            <a href="{{ contact_url }}">Contact</a>
                         </li>
                         {% if not request.user.is_authenticated %}
                       
                         {% else %}
-                        <li>
-                            <a href="{% url 'myorders' %}">Orders</a>
+                        <li class="{% if request.path == orders_url %}active{% endif %}">
+                            <a href="{{ orders_url }}">Orders</a>
                         </li>
-                    <li>
-                        <a href="{% url 'logout_view' %}">Log out</a>
-                    </li>
                   
                     {% endif %}
 

@@ -144,31 +144,25 @@
                             <div class="collapse show" id="widget-1">
                                 <div class="widget-body">
                                     <div class="filter-items filter-items-count">
-                                        <div class="filter-item">
-                                            <div class="custom-control ">
-                                                <a href="{% url 'Amplifiers' %}" class="custom-control-label" for="cat-1">Amplifiers</a>
-                                            </div><!-- End . -->
-                                        </div><!-- End .filter-item -->
-                                        <div class="filter-item">
-                                            <div class="custom-control ">
-                                                <a href="{% url 'Digital' %}" class="custom-control-label" for="cat-1">Digital</a>
-                                            </div><!-- End . -->
-                                        </div><!-- End .filter-item -->
-                                        <div class="filter-item">
-                                            <div class="custom-control ">
-                                                <a href="{% url 'Loudspeakers' %}" class="custom-control-label" for="cat-1">Loudspeakers</a>
-                                            </div><!-- End . -->
-                                        </div><!-- End .filter-item -->
-                                        <div class="filter-item">
-                                            <div class="custom-control ">
-                                                <a href="{% url 'Mixer_Console' %}" class="custom-control-label" for="cat-1">Mixer Console</a>
-                                            </div><!-- End . -->
-                                        </div><!-- End .filter-item -->
-                                        <div class="filter-item">
-                                            <div class="custom-control ">
-                                                <a href="{% url 'Turntables' %}" class="custom-control-label" for="cat-1">Turntables</a>
-                                            </div><!-- End . -->
-                                        </div><!-- End .filter-item -->
+                                    <div class="">
+                                        <a href="{% url 'category_products' 'ultrabook' %}" class="custom-control-label">Ultrabooks</a>
+                                    </div>
+                                    <div class="">
+                                        <a href="{% url 'category_products' 'gaming' %}" class="custom-control-label">Gaming Laptops</a>
+                                    </div>
+                                    <div class="">
+                                        <a href="{% url 'category_products' 'business' %}" class="custom-control-label">Business Laptops</a>
+                                    </div>
+                                    <div class="">
+                                        <a href="{% url 'category_products' 'convertible' %}" class="custom-control-label">2-in-1 Convertibles</a>
+                                    </div>
+                                    <div class="">
+                                        <a href="{% url 'category_products' 'chromebook' %}" class="custom-control-label">Chromebooks</a>
+                                    </div>
+                                    <div class="">
+                                        <a href="{% url 'category_products' 'budget' %}" class="custom-control-label">Budget Laptops</a>
+                                    </div>
+                                </div>
 
                                         <!-- Add more categories as needed -->
                                     </div><!-- End .filter-items -->

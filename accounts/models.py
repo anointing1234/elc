@@ -76,99 +76,128 @@ class Account(AbstractBaseUser, PermissionsMixin):
         return True
 
 
+
 class Product(models.Model):
-    # Updated product categories for electronics website
-    AMPLIFIERS = 'Amplifiers'
-    DIGITAL = 'Digital'
-    LOUDSPEAKERS = 'Loudspeakers'
-    MIXER_CONSOLE = 'Mixer Console'
-    TURNTABLES = 'Turntables'
+    # === Laptop categories ===
+    ULTRABOOK   = 'ultrabook'
+    GAMING      = 'gaming'
+    BUSINESS    = 'business'
+    CONVERTIBLE = 'convertible'
+    CHROMEBOOK  = 'chromebook'
+    BUDGET      = 'budget'
 
     PRODUCT_CATEGORY_CHOICES = [
-        (AMPLIFIERS, 'Amplifiers'),
-        (DIGITAL, 'Digital'),
-        (LOUDSPEAKERS, 'Loudspeakers'),
-        (MIXER_CONSOLE, 'Mixer Console'),
-        (TURNTABLES, 'Turntables'),
+        (ULTRABOOK,   'Ultrabooks'),
+        (GAMING,      'Gaming Laptops'),
+        (BUSINESS,    'Business Laptops'),
+        (CONVERTIBLE, '2-in-1 Convertibles'),
+        (CHROMEBOOK,  'Chromebooks'),
+        (BUDGET,      'Budget Laptops'),
     ]
 
-    # Updated product type choices for electronics
+    # === (Optional) Product types ===
     AUDIO_EQUIPMENT = 'Audio Equipment'
-    ACCESSORIES = 'Accessories'
-    COMPONENTS = 'Components'
+    ACCESSORIES     = 'Accessories'
+    COMPONENTS      = 'Components'
 
     PRODUCT_TYPE_CHOICES = [
         (AUDIO_EQUIPMENT, 'Audio Equipment'),
-        (ACCESSORIES, 'Accessories'),
-        (COMPONENTS, 'Components'),
+        (ACCESSORIES,     'Accessories'),
+        (COMPONENTS,      'Components'),
     ]
 
-    # Product Tags remain generic for marketing purposes
-    FEATURED = 'Featured Products'
-    BESTSELLERS = 'Bestsellers'
-    POPULAR = 'Popular Categories'
+    # === (Optional) Tags for marketing ===
+    FEATURED     = 'Featured Products'
+    BESTSELLERS  = 'Bestsellers'
+    POPULAR      = 'Popular Categories'
     NEW_ARRIVALS = 'New Arrivals'
-    SALE = 'Sale'
-    TOP_RATED = 'Top Rated'
+    SALE         = 'Sale'
+    TOP_RATED    = 'Top Rated'
 
     PRODUCT_TAG_CHOICES = [
-        (FEATURED, 'Featured Products'),
-        (BESTSELLERS, 'Bestsellers'),
-        (POPULAR, 'Popular Categories'),
+        (FEATURED,     'Featured Products'),
+        (BESTSELLERS,  'Bestsellers'),
+        (POPULAR,      'Popular Categories'),
         (NEW_ARRIVALS, 'New Arrivals'),
-        (SALE, 'Sale'),
-        (TOP_RATED,'Top Rated')
+        (SALE,         'Sale'),
+        (TOP_RATED,    'Top Rated'),
     ]
 
-    # Fields
-    name = models.CharField(max_length=255)
-    product_category = models.CharField(max_length=50, choices=PRODUCT_CATEGORY_CHOICES)
-    product_type = models.CharField(max_length=50, choices=PRODUCT_TYPE_CHOICES)
-    product_tag = models.CharField(max_length=50, choices=PRODUCT_TAG_CHOICES, blank=True, null=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    reviews_in_stars = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
-    quantity = models.PositiveIntegerField(default=0)
-    description = models.TextField()
-  
-    # Product Image
-    image = models.ImageField(upload_to='products/', blank=True, null=True)
+    # === Fields ===
+    name              = models.CharField(max_length=255)
+    product_category  = models.CharField(
+        max_length=20,
+        choices=PRODUCT_CATEGORY_CHOICES
+    )
+    product_type      = models.CharField(
+        max_length=50,
+        choices=PRODUCT_TYPE_CHOICES,
+        blank=True, null=True
+    )
+    product_tag       = models.CharField(
+        max_length=50,
+        choices=PRODUCT_TAG_CHOICES,
+        blank=True, null=True
+    )
+    price             = models.DecimalField(max_digits=10, decimal_places=2)
+    reviews_in_stars  = models.DecimalField(
+        max_digits=2,
+        decimal_places=1,
+        default=0.0,
+        help_text="Average star rating (e.g. 4.5)"
+    )
+    quantity          = models.PositiveIntegerField(
+        default=0,
+        help_text="Units in stock"
+    )
+    description       = models.TextField()
+    image             = models.ImageField(
+        upload_to='products/',
+        blank=True, null=True
+    )
+    shipping_fee      = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0.0
+    )
 
-    # Shipping fee for the product
-    shipping_fee = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
-
-   
+    # === Admin: show a thumbnail ===
     def image_tag(self):
-        """Returns an HTML image tag for the product image in Django Admin."""
         if self.image:
-            return mark_safe(f'<img src="{self.image.url}" width="50" height="50" style="border-radius:5px;" />')
+            return mark_safe(
+                f'<img src="{self.image.url}" '
+                'width="50" height="50" style="border-radius:5px;" />'
+            )
         return "(No Image)"
+    image_tag.short_description = "Image Preview"
 
-        image_tag.short_description = "Image Preview"  # Sets column name in Admin
-
-
+    # === Override save() to convert to WebP before storing ===
     def save(self, *args, **kwargs):
-        # Convert the image to WebP format before saving (if image is provided)
         if self.image:
+            # open & ensure RGB
             img = Image.open(self.image)
             if img.mode in ("RGBA", "P"):
                 img = img.convert("RGB")
-            
-            webp_image = BytesIO()
-            img.save(webp_image, format="WebP", quality=90)
-            webp_image.seek(0)
-            
+
+            # save to WebP in memory
+            webp_buf = BytesIO()
+            img.save(webp_buf, format="WebP", quality=90)
+            webp_buf.seek(0)
+
+            # replace the file with our WebP
             self.image = InMemoryUploadedFile(
-                webp_image,
-                'ImageField',
-                f"{self.image.name.split('.')[0]}.webp",
-                'image/webp',
-                webp_image.tell(),
-                None
+                webp_buf,
+                field_name='image',
+                name=f"{self.image.name.rsplit('.',1)[0]}.webp",
+                content_type='image/webp',
+                size=webp_buf.tell(),
+                charset=None,
             )
         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
+
 
 
 class WrittenReview(models.Model):

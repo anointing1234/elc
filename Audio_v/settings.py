@@ -33,8 +33,8 @@ SECRET_KEY = 'django-insecure-m!&4sp_$t6jt@tr)8nfw#dt7jb5ufewl+0fd^k9c2($-&(n#!s
 DEBUG = False
 
 # ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = ["audiovisualesmorvedresl.com"]
-CSRF_TRUSTED_ORIGINS = ["https://audiovisualesmorvedresl.com"]
+ALLOWED_HOSTS = ["nicocomputers.com"]
+CSRF_TRUSTED_ORIGINS = ["https://nicocomputers.com"]
 
 
 
@@ -94,12 +94,12 @@ WSGI_APPLICATION = 'Audio_v.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 
@@ -194,18 +194,18 @@ EMAIL_USE_SSL = False
 
 
 UNFOLD = {
-    "SITE_HEADER": "AUDIOVISUALES MORVEDRE SL",
+    "SITE_HEADER": "NICO WHOLESALE COMPUTERS LTD",
     "SHOW_SIDEBAR": True,
-    "SITE_TITLE": "AUDIOVISUALES MORVEDRE SL",
-    "SITE_SUBHEADER": "AUDIOVISUALES MORVEDRE SL Admin Panel",
+    "SITE_TITLE": "NICO WHOLESALE COMPUTERS LTD",
+    "SITE_SUBHEADER": "NICO WHOLESALE COMPUTERS LTD Admin Panel",
     "SITE_URL": "/",
     "SITE_ICON": {
-        "light": lambda request: static("assets/logo/am_logo_white.png"),
-        "dark": lambda request: static("assets/logo/am_logo_white.png"),
+        "light": lambda request: static("assets/logo/nico_black.png"),
+        "dark": lambda request: static("assets/logo/nico_white.png"),
     },
     "SITE_LOGO": {
-        "light": lambda request: static("assets/logo/am_logo_white.png"),
-        "dark": lambda request: static("assets/logo/am_logo_white.png"),
+        "light": lambda request: static("assets/logo/nico_black.png"),
+        "dark": lambda request: static("assets/logo/nico_white.png"),
     },
     "DASHBOARD": {
         "show_search": True,

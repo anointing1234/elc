@@ -41,38 +41,38 @@
   
 
         <main class="main">
-            <div class="intro-slider-container">
-                <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false, "autoplay": true, "autoplayTimeout": 2000, "autoplayHoverPause": true}'>
-                    <div class="intro-slide" style="background-image: url('{% static "assets/images/backgrounds/electronic_wall_3.jpg" %}');">
-                        <div class="container intro-content">
-                            <h3 class="intro-subtitle">Latest Gadgets</h3><!-- End .intro-subtitle -->
-                            <h1 class="intro-title">Experience Innovation <br>With Cutting-Edge Electronics</h1><!-- End .intro-title -->
-                            <a href="{% url 'Digital' %}" class="btn btn-primary">
-                                <span>Shop Now</span>
-                                <i class="icon-long-arrow-right"></i>
-                            </a>
-                        </div><!-- End .container intro-content -->
-                    </div><!-- End .intro-slide -->
-                
-            
-                    <div class="intro-slide" style="background-image: url('{% static "assets/images/backgrounds/electronic_wall_2.jpg" %}');">
-                        <div class="container intro-content">
-                            <h3 class="intro-subtitle">Electronics Deals</h3><!-- End .intro-subtitle -->
-                            <h1 class="intro-title">Top Brands, Unbeatable Prices <br><span class="text-primary"><sup> €</sup>Special Offers</span></h1><!-- End .intro-title -->
-                            <a href="{% url 'Loudspeakers' %}" class="btn btn-primary">
-                                <span>Shop Now</span>
-                                <i class="icon-long-arrow-right"></i>
-                            </a>
-                        </div><!-- End .container intro-content -->
-                    </div><!-- End .intro-slide -->
-                  
-            
-                    <!-- Add more slides as needed -->
-                </div><!-- End .owl-carousel owl-simple -->
-            
-                <span class="slider-loader text-white"></span><!-- End .slider-loader -->
-            </div><!-- End .intro-slider-container -->
-     
+           <div class="intro-slider-container">
+    <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false, "autoplay": true, "autoplayTimeout": 2000, "autoplayHoverPause": true}'>
+        
+        <!-- Slide 1 -->
+        <div class="intro-slide" style="background-image: url('{% static "assets/images/backgrounds/electronic_wall_3.webp" %}');">
+            <div class="container intro-content">
+                <h3 class="intro-subtitle">Explore the Future</h3>
+                <h1 class="intro-title">Discover Next-Gen Tech <br>Unleash Smart Living</h1>
+                <a href="{% url 'category_products' 'ultrabook' %}" class="btn btn-primary">
+                    <span>Shop Now</span>
+                    <i class="icon-long-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="intro-slide" style="background-image: url('{% static "assets/images/backgrounds/electronic_wall_2.webp" %}');">
+            <div class="container intro-content">
+                <h3 class="intro-subtitle">Hot Electronics</h3>
+                <h1 class="intro-title">Premium Tech at <br><span class="text-primary"><sup>€</sup>Unmatched Prices</span></h1>
+                <a href="{% url 'category_products' 'ultrabook' %}" class="btn btn-primary">
+                    <span>Shop Now</span>
+                    <i class="icon-long-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+    </div><!-- End .owl-carousel -->
+
+    <span class="slider-loader text-white"></span>
+</div><!-- End .intro-slider-container -->
+
 
             <div class="mb-3 mb-lg-5"></div><!-- End .mb-3 mb-lg-5 -->
 
@@ -84,13 +84,13 @@
                         <div class="col-md-12 col-lg-5">
                             <div class="banner banner-large banner-overlay banner-overlay-light">
                                 <a href="#">
-                                    <img src="{% static 'assets/images/brands/Best-Amplifiers-For-Home-Hi-Fi-2023-Lead.jpg' %}" alt="Amplifiers Clearance" style="filter: brightness(50%);">
+                                    <img src="{% static 'assets/images/laptop_images/product-166.jpg' %}" alt="Chromebooks Clearance" style="filter: brightness(50%);">
                                 </a>
                                 <div class="banner-content banner-content-top">
                                     <h4 class="banner-subtitle text-white">Clearance Sale</h4><!-- End .banner-subtitle -->
-                                    <h3 class="banner-title text-white">Amplifiers</h3><!-- End .banner-title -->
+                                    <h3 class="banner-title text-white">Chromebooks</h3><!-- End .banner-title -->
                                 <!-- End .banner-text -->
-                                    <a href="{% url 'Amplifiers' %}" class="btn btn-outline-white banner-link">
+                                    <a href="{% url 'category_products' 'chromebook' %}" class="btn btn-outline-white banner-link">
                                         Shop Now<i class="icon-long-arrow-right"></i>
                                     </a>
                                 </div><!-- End .banner-content -->
@@ -102,13 +102,13 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="banner banner-overlay">
                                 <a href="#">
-                                    <img src="{% static 'assets/images/brands/degital_device.jpeg' %}" alt="Digital Devices Sale" style="filter: brightness(50%);">
+                                    <img src="{% static 'assets/images/laptop_images/product-100.jpg' %}" alt="Gaming Laptop Devices Sale" style="filter: brightness(50%);">
                                 </a>
                                 <div class="banner-content banner-content-bottom">
                                     <h4 class="banner-subtitle text-grey">On Sale</h4><!-- End .banner-subtitle -->
-                                    <h3 class="banner-title text-white">Digital Devices</h3><!-- End .banner-title -->
+                                    <h3 class="banner-title text-white">Gaming Laptops</h3><!-- End .banner-title -->
                                     <!-- End .banner-text -->
-                                    <a href="{% url 'Digital' %}" class="btn btn-outline-white banner-link">
+                                    <a href="{% url 'category_products' 'gaming' %}" class="btn btn-outline-white banner-link">
                                         Discover Now<i class="icon-long-arrow-right"></i>
                                     </a>
                                 </div><!-- End .banner-content -->
@@ -119,12 +119,12 @@
                         <div class="col-md-6 col-lg-4">
                             <div class="banner banner-overlay">
                                 <a href="#">
-                                    <img src="{% static 'assets/images/brands/Loud_speakers_mixes.jpg' %}" alt="Loudspeakers & Mixer Consoles" style="filter: brightness(50%);">
+                                    <img src="{% static 'assets/images/laptop_images/product-147.jpg' %}" alt="Convertibles" style="filter: brightness(50%);">
                                 </a>
                                 <div class="banner-content banner-content-top">
                                     <h4 class="banner-subtitle text-grey">New Arrivals</h4><!-- End .banner-subtitle -->
-                                    <h3 class="banner-title text-white">Loudspeakers & Mixer Consoles</h3><!-- End .banner-title -->
-                                    <a href="{% url 'Loudspeakers' %}" class="btn btn-outline-white banner-link">
+                                    <h3 class="banner-title text-white">Convertibles</h3><!-- End .banner-title -->
+                                    <a href="{% url 'category_products' 'convertible' %}" class="btn btn-outline-white banner-link">
                                         Discover Now<i class="icon-long-arrow-right"></i>
                                     </a>
                                 </div><!-- End .banner-content -->
@@ -134,12 +134,12 @@
                             <!-- Banner for Turntables Sale -->
                             <div class="banner banner-overlay banner-overlay-light">
                                 <a href="#">
-                                    <img src="{% static 'assets/images/brands/turnable.webp' %}" alt="Turntables Offer" style="filter: brightness(50%);">
+                                    <img src="{% static 'assets/images/laptop_images/product-61.jpg' %}" alt="Budget Laptops Offer" style="filter: brightness(50%);">
                                 </a>
                                 <div class="banner-content banner-content-top">
                                     <h4 class="banner-subtitle text-white">On Sale</h4><!-- End .banner-subtitle -->
-                                    <h3 class="banner-title text-white">Turntables</h3><!-- End .banner-title -->
-                                    <a href="{% url 'Turntables' %}" class="btn btn-outline-white banner-link">
+                                    <h3 class="banner-title text-white">Budget Laptops</h3><!-- End .banner-title -->
+                                    <a href="{% url 'category_products' 'chromebook' %}" class="btn btn-outline-white banner-link">
                                         Shop Now<i class="icon-long-arrow-right"></i>
                                     </a>
                                 </div><!-- End .banner-content -->
@@ -328,24 +328,25 @@
                                 <div class="deal-content">
                                     <h4>Limited Stock</h4>
                                     <h2>Deal of the Day</h2>
-            
-                                    <h3 class="product-title"><a>Sonic Boom Loudspeakers</a></h3><!-- End .product-title -->
-            
+
+                                    <h3 class="product-title">
+                                    <a href="/products/dell-xps-13">Dell XPS 13 Ultrabook</a>
+                                    </h3><!-- End .product-title -->
+
                                     <div class="product-price">
-                                        <span class="new-price"> €24,900.00</span>
-                                        <span class="old-price">Was€34,900.00</span>
+                                    <span class="new-price">€1,249.00</span>
+                                    <span class="old-price">Was €1,499.00</span>
                                     </div><!-- End .product-price -->
-            
+
                                     <div class="deal-countdown" data-until="+10h"></div><!-- End .deal-countdown -->
-            
-                               
-                                    <a href="{% url 'Loudspeakers' %}" class="btn btn-primary">
+
+                                    <a href="{% url 'category_products' 'ultrabook' %}" class="btn btn-primary">
                                         <span>Shop Now</span><i class="icon-long-arrow-right"></i>
                                     </a>
                                 </div><!-- End .deal-content -->
                                 <div class="deal-image">
                                     <a>
-                                        <img src="{% static 'assets/images/products/sunic_boom.jpg' %}" alt="Sonic Boom Loudspeakers">
+                                        <img src="{% static 'assets/images/products/gaming_pc.jpg' %}" alt="best gaming pc">
                                     </a>
                                 </div><!-- End .deal-image -->
                             </div><!-- End .deal -->
@@ -354,13 +355,13 @@
                         <div class="col-lg-3">
                             <div class="banner banner-overlay banner-overlay-light bg-white text-center d-none d-lg-block" style="position: relative; height: 400px;">
                                 <a href="#">
-                                    <img src="{% static 'assets/images/products/pro_turnable.jpeg' %}" alt="Turntable Deal" style="width: 100%; height: 300px;">
+                                    <img src="{% static 'assets/images/products/ultrabooks.jpg' %}" alt="Ultrabooks Deal" style="width: 100%; height: 300px;">
                                 </a>
                                 <div class="banner-content banner-content-top banner-content-center" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                     <h4 class="banner-subtitle text-white">Top Choice</h4><!-- End .banner-subtitle -->
-                                    <h3 class="banner-title text-white">Pro Turntable</h3><!-- End .banner-title -->
-                                    <div class="banner-text text-primary"> €24,000.99</div><!-- End .banner-text -->
-                                    <a href="{% url 'Turntables' %}" class="btn btn-outline-white banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
+                                    <h3 class="banner-title text-white">Ultrabooks</h3><!-- End .banner-title -->
+                                    <div class="banner-text text-primary"> €30,000.99</div><!-- End .banner-text -->
+                                    <a href="{% url 'category_products' 'chromebook' %}" class="btn btn-outline-white banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
                                 </div><!-- End .banner-content -->
                           
                             </div><!-- End .banner -->
@@ -374,229 +375,184 @@
             <div class="mb-6"></div><!-- End .mb-6 -->
 
             <div class="container">
-                <div class="heading heading-center mb-3">
-                    <h2 class="title">Top Selling Products</h2><!-- End .title -->
+  <div class="heading heading-center mb-3">
+    <h2 class="title">Top Selling Products</h2>
 
-                    <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="top-all-link" data-toggle="tab" href="#top-all-tab" role="tab" aria-controls="top-all-tab" aria-selected="true">All</a>
-                        </li>
-                        <li class="nav-item"> 
-                            <a class="nav-link" id="top-Loudspeakers-link" data-toggle="tab" href="#top-fur-tab" role="tab" aria-controls="top-fur-tab" aria-selected="false">Loudspeakers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="top-Turntables-link" data-toggle="tab" href="#top-turntable-tab" role="tab" aria-controls="top-turntable-tab" aria-selected="false">Turntables</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="top-Digital-link" data-toggle="tab" href="#top-digital-tab" role="tab" aria-controls="top-digital-tab" aria-selected="false">Digital</a>
-                        </li>
-                        
-                    </ul>
-                </div><!-- End .heading -->
+    <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active"
+           id="top-all-link"
+           data-toggle="tab"
+           href="#top-all-tab"
+           role="tab"
+           aria-controls="top-all-tab"
+           aria-selected="true">
+          All
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+           id="top-ultrabooks-link"
+           data-toggle="tab"
+           href="#top-ultrabooks-tab"
+           role="tab"
+           aria-controls="top-ultrabooks-tab"
+           aria-selected="false">
+          Ultrabooks
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+           id="top-gaming-laptops-link"
+           data-toggle="tab"
+           href="#top-gaming-laptops-tab"
+           role="tab"
+           aria-controls="top-gaming-laptops-tab"
+           aria-selected="false">
+          Gaming Laptops
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+           id="top-business-laptops-link"
+           data-toggle="tab"
+           href="#top-business-laptops-tab"
+           role="tab"
+           aria-controls="top-business-laptops-tab"
+           aria-selected="false">
+          Business Laptops
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+           id="top-convertibles-link"
+           data-toggle="tab"
+           href="#top-convertibles-tab"
+           role="tab"
+           aria-controls="top-convertibles-tab"
+           aria-selected="false">
+          2-in-1 Convertibles
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+           id="top-chromebooks-link"
+           data-toggle="tab"
+           href="#top-chromebooks-tab"
+           role="tab"
+           aria-controls="top-chromebooks-tab"
+           aria-selected="false">
+          Chromebooks
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+           id="top-budget-laptops-link"
+           data-toggle="tab"
+           href="#top-budget-laptops-tab"
+           role="tab"
+           aria-controls="top-budget-laptops-tab"
+           aria-selected="false">
+          Budget Laptops
+        </a>
+      </li>
+    </ul>
+  </div>
 
-                <div class="tab-content">
-
-
-                    <div class="tab-pane p-0 fade show active" id="top-all-tab" role="tabpanel" aria-labelledby="top-all-link">
-                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
-                            data-owl-options='{
-                                "nav": false, 
-                                "dots": true,
-                                "margin": 20,
-                                "loop": false,
-                                "responsive": {
-                                    "0": { "items": 1 },
-                                    "480": { "items": 2 },
-                                    "768": { "items": 3 },
-                                    "992": { "items": 4 }
-                                }
-                            }'>
-                            {% for product in all_products %}
-                            <div class="product product-11 text-center" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-                                <figure class="product-media" style="height: 250px; display: flex; align-items: center; justify-content: center;">
-                                    <a href="{% url 'product_detail' product.id %}">
-                                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image img-fluid" style="height: 100%; width: 100%; object-fit: cover;">
-                                    </a>
-                                 
-                                </figure>
-                
-                                <div class="product-body" style="padding: 15px;">
-                                    <div class="product-cat">
-                                        <a href="#">{{ product.product_category }}</a>
-                                    </div>
-                                    <h3 class="product-title">
-                                        <a href="">{{ product.name }}</a>
-                                    </h3>
-                                    <div class="product-price">
-                                       €{{ product.price|floatformat:2|intcomma }}
-                                    </div>
-                                </div>
-                
-                                <div class="product-action" style="padding-bottom: 15px;">
-                                    <button class="btn-product btn-cart add-to-cart-btn" type="button"
-                                    data-product-id="{{ product.id }}"
-                                    data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
-                                    data-csrf-token="{{ csrf_token }}">
-                                <span class="btn-text">add to cart</span>
-                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                            </button>
-                                </div>
-                            </div><!-- End .product -->
-                            {% endfor %}
-                        </div><!-- End .owl-carousel -->
-                    </div><!-- End .tab-pane -->
-
-                    <div class="tab-pane p-0 fade" id="top-fur-tab" role="tabpanel" aria-labelledby="top-Loudspeakers-link">
-                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
-                            data-owl-options='{
-                                "nav": false, 
-                                "dots": true,
-                                "margin": 20,
-                                "loop": false,
-                                "responsive": {
-                                    "0": { "items": 1 },
-                                    "480": { "items": 2 },
-                                    "768": { "items": 3 },
-                                    "992": { "items": 4 }
-                                }
-                            }'>
-                            {% for product in Loudspeakers %}
-                            <div class="product product-11 text-center" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-                                <figure class="product-media" style="height: 250px; display: flex; align-items: center; justify-content: center;">
-                                    <a href="{% url 'product_detail' product.id %}">
-                                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image img-fluid" style="height: 100%; width: 100%; object-fit: cover;">
-                                    </a>
-                                 
-                                </figure>
-                
-                                <div class="product-body" style="padding: 15px;">
-                                    <div class="product-cat">
-                                        <a href="#">{{ product.product_category }}</a>
-                                    </div>
-                                    <h3 class="product-title">
-                                        <a href="">{{ product.name }}</a>
-                                    </h3>
-                                    <div class="product-price">
-                                       €{{ product.price|floatformat:2|intcomma }}
-                                    </div>
-                                </div>
-                
-                                <div class="product-action" style="padding-bottom: 15px;">
-                                    <button class="btn-product btn-cart add-to-cart-btn" type="button"
-                                    data-product-id="{{ product.id }}"
-                                    data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
-                                    data-csrf-token="{{ csrf_token }}">
-                                <span class="btn-text">add to cart</span>
-                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                            </button>
-                                </div>
-                            </div><!-- End .product -->
-                            {% endfor %}
-                        </div><!-- End .owl-carousel -->
-                    </div><!-- .End .tab-pane -->
-
-
-
-                 <!-- Corrected Digital Tab -->
-<div class="tab-pane p-0 fade" id="top-digital-tab" role="tabpanel" aria-labelledby="top-Digital-link">
-    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
-    data-owl-options='{
-        "nav": false, 
-        "dots": true,
-        "margin": 20,
-        "loop": false,
-        "responsive": {
-            "0": { "items": 1 },
-            "480": { "items": 2 },
-            "768": { "items": 3 },
-            "992": { "items": 4 }
-        }
-    }'>
-    {% for product in Digital %}
-    <div class="product product-11 text-center">
-        <figure class="product-media">
-            <a href="{% url 'product_detail' product.id %}">
-                <img style="height: 250px; display: flex; align-items: center; justify-content: center;" src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-            </a>
-      
-        </figure>
-        <div class="product-body">
-            <div class="product-cat">
-                <a href="#">{{ product.product_category }}</a>
-            </div>
-            <h3 class="product-title">
-                <a href="">{{ product.name }}</a>
-            </h3>
-            <div class="product-price">
-               €{{ product.price|floatformat:2|intcomma }}
-            </div>
-        </div>
-        <div class="product-action">
-            <button class="btn-product btn-cart add-to-cart-btn" type="button"
-            data-product-id="{{ product.id }}"
-            data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
-            data-csrf-token="{{ csrf_token }}">
-        <span class="btn-text">add to cart</span>
-        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-    </button>
-        </div>
+  <div class="tab-content">
+    <!-- All Products -->
+    <div class="tab-pane p-0 fade show active"
+         id="top-all-tab"
+         role="tabpanel"
+         aria-labelledby="top-all-link">
+      <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+           data-owl-options='{"nav":false,"dots":true,"margin":20,"loop":false,"responsive":{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4}}}'>
+        {% for product in all_products %}
+          {% include "home/_product_card.html" with product=product %}
+        {% endfor %}
+      </div>
     </div>
-    {% endfor %}
+
+    <!-- Ultrabooks -->
+    <div class="tab-pane p-0 fade"
+         id="top-ultrabooks-tab"
+         role="tabpanel"
+         aria-labelledby="top-ultrabooks-link">
+      <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+           data-owl-options='{"nav":false,"dots":true,"margin":20,"loop":false,"responsive":{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4}}}'>
+        {% for product in ultrabooks %}
+          {% include "home/_product_card.html" with product=product %}
+        {% endfor %}
+      </div>
     </div>
+
+    <!-- Gaming Laptops -->
+    <div class="tab-pane p-0 fade"
+         id="top-gaming-laptops-tab"
+         role="tabpanel"
+         aria-labelledby="top-gaming-laptops-link">
+      <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+           data-owl-options='{"nav":false,"dots":true,"margin":20,"loop":false,"responsive":{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4}}}'>
+        {% for product in gaming_laptops %}
+          {% include "home/_product_card.html" with product=product %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Business Laptops -->
+    <div class="tab-pane p-0 fade"
+         id="top-business-laptops-tab"
+         role="tabpanel"
+         aria-labelledby="top-business-laptops-link">
+      <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+           data-owl-options='{"nav":false,"dots":true,"margin":20,"loop":false,"responsive":{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4}}}'>
+        {% for product in business_laptops %}
+          {% include "home/_product_card.html" with product=product %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Convertibles -->
+    <div class="tab-pane p-0 fade"
+         id="top-convertibles-tab"
+         role="tabpanel"
+         aria-labelledby="top-convertibles-link">
+      <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+           data-owl-options='{"nav":false,"dots":true,"margin":20,"loop":false,"responsive":{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4}}}'>
+        {% for product in convertibles %}
+          {% include "home/_product_card.html" with product=product %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Chromebooks -->
+    <div class="tab-pane p-0 fade"
+         id="top-chromebooks-tab"
+         role="tabpanel"
+         aria-labelledby="top-chromebooks-link">
+      <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+           data-owl-options='{"nav":false,"dots":true,"margin":20,"loop":false,"responsive":{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4}}}'>
+        {% for product in chromebooks %}
+          {% include "home/_product_card.html" with product=product %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Budget Laptops -->
+    <div class="tab-pane p-0 fade"
+         id="top-budget-laptops-tab"
+         role="tabpanel"
+         aria-labelledby="top-budget-laptops-link">
+      <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+           data-owl-options='{"nav":false,"dots":true,"margin":20,"loop":false,"responsive":{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4}}}'>
+        {% for product in budget_laptops %}
+          {% include "home/_product_card.html" with product=product %}
+        {% endfor %}
+      </div>
+    </div>
+
+  </div><!-- .tab-content -->
 </div>
-
-
-<!-- Corrected Turntables Tab -->
-<div class="tab-pane p-0 fade" id="top-turntable-tab" role="tabpanel" aria-labelledby="top-Turntables-link">
-    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
-    data-owl-options='{
-        "nav": false, 
-        "dots": true,
-        "margin": 20,
-        "loop": false,
-        "responsive": {
-            "0": { "items": 1 },
-            "480": { "items": 2 },
-            "768": { "items": 3 },
-            "992": { "items": 4 }
-        }
-    }'>
-    {% for product in Turnatables %}
-    <div class="product product-11 text-center">
-        <figure class="product-media">
-            <a href="{% url 'product_detail' product.id %}">
-                <img style="height: 250px; display: flex; align-items: center; justify-content: center;" src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-            </a>
-      
-        </figure>
-        <div class="product-body">
-            <div class="product-cat">
-                <a href="#">{{ product.product_category }}</a>
-            </div>
-            <h3 class="product-title">
-                <a href="">{{ product.name }}</a>
-            </h3>
-            <div class="product-price">
-               €{{ product.price|floatformat:2|intcomma }}
-            </div>
-        </div>
-        <div class="product-action">
-            <button class="btn-product btn-cart add-to-cart-btn" type="button"
-            data-product-id="{{ product.id }}"
-            data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
-            data-csrf-token="{{ csrf_token }}">
-        <span class="btn-text">add to cart</span>
-        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-    </button>
-        </div>
-    </div>
-    {% endfor %}
-    </div>
-</div>
-
-
-
-
 
 
 

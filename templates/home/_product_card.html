@@ -1,0 +1,38 @@
+{% load static %}
+{% load humanize %}
+
+
+{# templates/home/_product_card.html #}
+<div class="product product-11 text-center" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+  <figure class="product-media" style="height: 250px; display: flex; align-items: center; justify-content: center;">
+    <a href="{% url 'product_detail' product.id %}">
+      <img src="{{ product.image.url }}" 
+           alt="{{ product.name }}" 
+           class="product-image img-fluid" 
+           style="height: 100%; width: 100%; object-fit: cover;">
+    </a>
+  </figure>
+
+  <div class="product-body" style="padding: 15px;">
+    <div class="product-cat">
+      <a href="#">{{ product.product_category }}</a>
+    </div>
+    <h3 class="product-title">
+      <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+    </h3>
+    <div class="product-price">
+      €{{ product.price|floatformat:2|intcomma }}
+    </div>
+  </div>
+
+  <div class="product-action" style="padding-bottom: 15px;">
+    <button class="btn-product btn-cart add-to-cart-btn" 
+            type="button"
+            data-product-id="{{ product.id }}"
+            data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
+            data-csrf-token="{{ csrf_token }}">
+      <span class="btn-text">add to cart</span>
+      <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>

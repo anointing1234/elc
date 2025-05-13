@@ -10,8 +10,11 @@
             padding: 20px;
         }
 
-        h1 {
+        h1, h3, h4 {
             color: #007BFF;
+        }
+
+        h1 {
             font-size: 24px;
             margin-bottom: 20px;
         }
@@ -89,9 +92,10 @@
 <body>
     <!-- Header Section -->
     <div class="header">
-        <h3>Order Confirmation - Order Number: {{ order.order_id }} Confirmed</h3>
-        <h4>AUDIOVISUALES MORVEDRE SL</h4> <!-- Updated site name -->
+        <h3>Order Confirmation – Order Number: {{ order.order_id }} Confirmed</h3>
+        <h4>Nico Computers</h4>
     </div>
+
     <!-- Order Summary Section -->
     <div class="order-summary">
         <h2>Product Details:</h2>
@@ -115,19 +119,18 @@
 
     <!-- Delivery Date Section -->
     <div class="delivery-date">
-        <h2>Delivery Date :</h2>
+        <h2>Delivery Date:</h2>
         <p>{{ formatted_delivery_date }}</p>
     </div>
 
     <div class="view-order-button">
-        <a href="https://audiovisualesmorvedresl.com/Accounts/orders/{{ order.order_id }}/" class="button">View Order</a>
+        <a href="https://nicocomputers.com/Accounts/orders/{{ order.order_id }}/" class="button">View Order</a>
     </div>
 
     <!-- Footer Section -->
     <div class="footer">
         <p>Thank you for your order!</p>
-        <p>If you have any questions, feel free to <a href="mailto:Info@audiovisualesmorvedresl.com">contact us</a>.</p>
+        <p>If you have any questions, feel free to <a href="mailto:info@nicocomputers.com">contact us</a>.</p>
     </div>
-
 </body>
 </html>

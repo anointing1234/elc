@@ -18,11 +18,61 @@ class AccountAdmin(UnfoldModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(UnfoldModelAdmin):
-    list_display = ('name', 'product_category', 'product_type','product_tag', 'price', 'quantity', 'image_tag')
+    # Show the display labels (not the raw values) in the list
+    list_display = (
+        'name',
+        'get_product_category_display',
+        'get_product_type_display',
+        'get_product_tag_display',
+        'price',
+        'product_tag',
+        'quantity',
+        'image_tag',
+    )
+    # Which fields can be edited directly on the changelist
+    list_editable = ('price', 'quantity', 'product_tag')
     search_fields = ('name', 'product_category', 'product_type')
     list_filter = ('product_category', 'product_type', 'product_tag')
     ordering = ('-price',)
     readonly_fields = ('image_tag',)
+
+    # Organize the form into sections
+    fieldsets = (
+        ('General Info', {
+            'fields': (
+                'name',
+                'product_category',
+                'product_type',
+                'product_tag',
+                'price',
+                'quantity',
+                'reviews_in_stars',
+            ),
+        }),
+        ('Details & Media', {
+            'fields': (
+                'description',
+                'shipping_fee',
+                'image',
+                'image_tag',
+            ),
+        }),
+    )
+
+    def get_product_category_display(self, obj):
+        return obj.get_product_category_display()
+    get_product_category_display.short_description = 'Category'
+    get_product_category_display.admin_order_field = 'product_category'
+
+    def get_product_type_display(self, obj):
+        return obj.get_product_type_display()
+    get_product_type_display.short_description = 'Type'
+    get_product_type_display.admin_order_field = 'product_type'
+
+    def get_product_tag_display(self, obj):
+        return obj.get_product_tag_display() or '—'
+    get_product_tag_display.short_description = 'Tag'
+    get_product_tag_display.admin_order_field = 'product_tag'
 
 
 @admin.register(WrittenReview)

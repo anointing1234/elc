@@ -1,3 +1,12 @@
+{% url 'home' as home_url %}
+{% url 'about_us' as about_url %}
+{% url 'refund_policy' as refund_url %}
+{% url 'terms_condition' as terms_url %}
+{% url 'contact' as contact_url %}
+{% url 'myorders' as orders_url %}
+
+
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -5,54 +14,77 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>AUDIOVISUALES MORVEDRE SL | Innovative Electronic Solutions</title>
-    <meta name="keywords" content="audiovisuales, electronic solutions, audiovisual equipment">
-    <meta name="description" content="Discover innovative electronic solutions with AUDIOVISUALES MORVEDRE SL. We specialize in high-quality audiovisual equipment and technology.">
-    <meta name="author" content="AUDIOVISUALES MORVEDRE SL">
+
+    <title>NICO WHOLESALE COMPUTERS LTD</title>
+    <meta name="keywords" content="wholesale computers, UK computer supplier, Ireland electronics, computer hardware, tech solutions">
+    <meta name="description" content="NICO WHOLESALE COMPUTERS LTD offers high-quality computer hardware and electronic solutions in the UK and Ireland.">
+    <meta name="author" content="NICO WHOLESALE COMPUTERS LTD">
+
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/logo/favicon.ico' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/logo/favicon.ico' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/logo/favicon.ico' %}">
-    <link rel="manifest" href="{% static 'assets/logo/favicon.ico' %}">
-    <link rel="mask-icon" href="{% static 'assets/logo/favicon.ico' %}" color="#666666">
-    <link rel="shortcut icon" href="{% static 'assets/logo/favicon.ico' %}">
-    <meta name="apple-mobile-web-app-title" content="AUDIOVISUALES MORVEDRE SL">
-    <meta name="application-name" content="AUDIOVISUALES MORVEDRE SL">
-    <meta name="msapplication-TileColor" content="#cc9966">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/logo/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/logo/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/logo/favicon.png' %}">
+    <link rel="manifest" href="{% static 'assets/logo/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'assets/logo/favicon.png' %}" color="#666666">
+    <link rel="shortcut icon" href="{% static 'assets/logo/favicon.png' %}">
+    <meta name="apple-mobile-web-app-title" content="NICO WHOLESALE COMPUTERS">
+    <meta name="application-name" content="NICO WHOLESALE COMPUTERS">
+    <meta name="msapplication-TileColor" content="#004080">
     <meta name="msapplication-config" content="{% static 'assets/images/icons/browserconfig.xml' %}">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="AUDIOVISUALES MORVEDRE SL | Innovative Electronic Solutions">
-    <meta property="og:description" content="Discover our range of high-quality audiovisual equipment and services.">
+    <meta property="og:title" content="NICO WHOLESALE COMPUTERS LTD | Trusted Wholesale Computer Supplier">
+    <meta property="og:description" content="We supply high-quality wholesale computer hardware in the UK and Ireland. Trusted by businesses, managed by Director Nicolas Leatham.">
     <meta property="og:image" content="{% static 'assets/images/og-image.jpg' %}">
-    <meta property="og:url" content="https://audiovisualesmorvedresl.com">
+    <meta property="og:url" content="https://nicocomputers.com">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AUDIOVISUALES MORVEDRE SL | Innovative Electronic Solutions">
-    <meta name="twitter:description" content="Discover our range of high-quality audiovisual equipment and services.">
+    <meta name="twitter:title" content="NICO WHOLESALE COMPUTERS LTD | Trusted Wholesale Computer Supplier">
+    <meta name="twitter:description" content="Explore our range of high-quality computer hardware and tech solutions for businesses in the UK and Ireland.">
     <meta name="twitter:image" content="{% static 'assets/images/og-image.jpg' %}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <!-- Schema.org Organization Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "AUDIOVISUALES MORVEDRE SL",
-        "url": "https://audiovisualesmorvedresl.com",
-        "logo": "https://audiovisualesmorvedresl.com{% static 'assets/logo/am_logo_black.png' %}",
+        "name": "NICO WHOLESALE COMPUTERS LTD",
+        "url": "https://nicocomputers.com",
+        "logo": "https://nicocomputers.com{% static 'assets/logo/nico_logo.png' %}",
+        "founder": "Nicolas Leatham",
+        "address": [
+            {
+                "@type": "PostalAddress",
+                "streetAddress": "5a Lewes Road",
+                "addressLocality": "Brighton",
+                "addressRegion": "England",
+                "postalCode": "BN2 3HP",
+                "addressCountry": "United Kingdom"
+            },
+            {
+                "@type": "PostalAddress",
+                "streetAddress": "Apartment 16, Block 1, Richmond Hall, Richmond Road, Fairview",
+                "addressLocality": "Dublin 3",
+                "postalCode": "D03 E674",
+                "addressCountry": "Ireland"
+            }
+        ],
         "contactPoint": [{
             "@type": "ContactPoint",
-            "telephone": "+34-XXX-XXX-XXX",
-            "contactType": "customer service"
+            "contactType": "customer service",
+            "telephone": "+44-XXX-XXX-XXXX"
         }]
     }
     </script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="{% static 'assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/line-awesome/line-awesome/line-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/plugins/owl-carousel/owl.carousel.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/plugins/magnific-popup/magnific-popup.css' %}">
@@ -63,18 +95,17 @@
 </head>
 
 <body>
+
     <div class="page-wrapper">
   {% include "../sections/navbar.html" %}
   {% block contents %}{% endblock contents %}
   {% include "../sections/footer.html" %} 
 
-
-  
-  <div class="mobile-menu-container mobile-menu-light">
+<div class="mobile-menu-container mobile-menu-light">
     <div class="mobile-menu-wrapper">
         <span class="mobile-menu-close"><i class="icon-close"></i></span>
     
-        <form  action="{% url 'product_search' %}" method="GET" class="mobile-search">
+        <form action="{% url 'product_search' %}" method="GET" class="mobile-search">
             <label for="mobile-search" class="sr-only">Search</label>
             <input type="search" class="form-control" name="search" id="mobile-search" placeholder="Search product ..." required>
             <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
@@ -92,28 +123,19 @@
                     <ul class="mobile-menu">
                         <li class="active"><a href="{% url 'home' %}">Home</a></li>
                         <li><a href="{% url 'terms_condition' %}">About</a></li>
-                        <li>
-                            <a href="{% url 'refund_policy' %}" >Refund Policy</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'Digital' %}" >Electronic Store</a>
-                        </li>
-                        <li><a href="{% url 'Amplifiers' %}">Amplifiers</a></li>
-                        <li><a href="{% url 'Digital' %}">Digital</a></li>
-                        <li><a href="{% url 'Loudspeakers' %}">Loudspeakers</a></li>
-                        <li><a href="{% url 'Mixer_Console' %}">Mixer Console</a></li>
-                        <li><a href="{% url 'Turntables' %}">Turntables</a></li>
+                        <li><a href="{% url 'refund_policy' %}">Refund Policy</a></li>
+                        <li><a href="{% url 'category_products' 'ultrabook' %}">Ultrabooks</a></li>
+                        <li><a href="{% url 'category_products' 'gaming' %}">Gaming Laptops</a></li>
+                        <li><a href="{% url 'category_products' 'business' %}">Business Laptops</a></li>
+                        <li><a href="{% url 'category_products' 'convertible' %}">2-in-1 Convertibles</a></li>
+                        <li><a href="{% url 'category_products' 'chromebook' %}">Chromebooks</a></li>
+                        <li><a href="{% url 'category_products' 'budget' %}">Budget Laptops</a></li>
                         {% if request.user.is_authenticated %}
-                        <li>
-                            <a href="{% url 'myorders' %}">Orders</a>
-                        </li>
+                        <li><a href="{% url 'myorders' %}">Orders</a></li>
                         {% endif %}
                         <li><a href="{% url 'contact' %}">Contact</a></li>
-                        {% if not request.user.is_authenticated %}
-                        {% else %}
-                        <li>
-                            <a href="{% url 'logout_view' %}">Logout</a>
-                        </li>
+                        {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'logout_view' %}">Logout</a></li>
                         {% endif %}
                     </ul>
                 </nav><!-- End .mobile-nav -->
@@ -121,6 +143,7 @@
         </div><!-- End .tab-content -->
     </div><!-- End .mobile-menu-wrapper -->
 </div><!-- End .mobile-menu-container -->
+
 
       
     </div><!-- End .mobile-menu-wrapper -->
@@ -226,7 +249,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>                
-
+{% comment %} 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // Random names (30 names)
@@ -285,8 +308,21 @@
 
         startFakeAdditions(); // Start the function
     });
-</script>
+</script> {% endcomment %}
 
+
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/682204b6b8f3ec190b8624dc/1ir2e4qnu';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
 
 </body>
 

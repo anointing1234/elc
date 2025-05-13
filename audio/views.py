@@ -19,34 +19,49 @@ from django.contrib.auth.decorators import login_required
 
 
 def home_view(request):
+    # Tags
     featured_products = Product.objects.filter(product_tag=Product.FEATURED)
-    bestsellers = Product.objects.filter(product_tag='Bestsellers')
-    New_arrivals = Product.objects.filter(product_tag='New Arrivals')
-    Top_rated = Product.objects.filter(product_tag='Top Rated')
-    On_sale = Product.objects.filter(product_tag='Sale')
+    bestsellers       = Product.objects.filter(product_tag=Product.BESTSELLERS)
+    popular_categories= Product.objects.filter(product_tag=Product.POPULAR)
+    new_arrivals      = Product.objects.filter(product_tag=Product.NEW_ARRIVALS)
+    top_rated         = Product.objects.filter(product_tag=Product.TOP_RATED)
+    on_sale           = Product.objects.filter(product_tag=Product.SALE)
+
+    # All products
     all_products = Product.objects.all()
-    
-    Amplifies = Product.objects.filter(product_category='Amplifiers')
-    Digital = Product.objects.filter(product_category='Digital')
-    Loudspeakers = Product.objects.filter(product_category='Loudspeakers')
-    Turnatables = Product.objects.filter(product_category='Turntables')
 
- 
+    # Categories
+    ultrabooks       = Product.objects.filter(product_category=Product.ULTRABOOK)
+    gaming_laptops   = Product.objects.filter(product_category=Product.GAMING)
+    business_laptops = Product.objects.filter(product_category=Product.BUSINESS)
+    convertibles     = Product.objects.filter(product_category=Product.CONVERTIBLE)
+    chromebooks      = Product.objects.filter(product_category=Product.CHROMEBOOK)
+    budget_laptops   = Product.objects.filter(product_category=Product.BUDGET)
 
-    return render(request,'home/index.html',
-    {
-    'featured_products': featured_products,
-    'bestsellers': bestsellers,
-    'New_arrivals':New_arrivals,
-    'Top_rated':Top_rated,
-    'on_sale': On_sale,
-    'all_products': all_products,
-    'Amplifies': Amplifies,
-    'Digital': Digital,
-    'Loudspeakers':Loudspeakers,
-    'Turnatables':Turnatables,
-    })
-    
+    context = {
+        # Tags
+        'featured_products':   featured_products,
+        'bestsellers':         bestsellers,
+        'popular_categories':  popular_categories,
+        'new_arrivals':        new_arrivals,
+        'top_rated':           top_rated,
+        'on_sale':             on_sale,
+
+        # All
+        'all_products':        all_products,
+
+        # Categories
+        'ultrabooks':          ultrabooks,
+        'gaming_laptops':      gaming_laptops,
+        'business_laptops':    business_laptops,
+        'convertibles':        convertibles,
+        'chromebooks':         chromebooks,
+        'budget_laptops':      budget_laptops,
+    }
+
+    return render(request, 'home/index.html', context)
+
+
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -221,108 +236,26 @@ def remove_from_cart(request, item_id):
     })
 
 
+def category_products(request, category_slug):
+    # Validate that it's a valid category slug
+    valid_categories = dict(Product.PRODUCT_CATEGORY_CHOICES)
+    if category_slug not in valid_categories:
+        return render(request, 'home/invalid_category.html', {'invalid_category': category_slug})
 
+    # Filter products by category
+    products = Product.objects.filter(product_category=category_slug)
 
-
-
-def Loudspeakers_view(request):
-    # Query the products based on category
-    Loudspeakers_products = Product.objects.filter(product_category="Loudspeakers")
-
-    # Initialize the paginator with the list of products and the number per page (e.g., 3)
-    paginator = Paginator(Loudspeakers_products, 3)
-
-    # Get the current page number from the GET request (defaults to 1 if not specified)
+    # Paginate results
+    paginator = Paginator(products, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # Pass the paginated products and the total count to the template
-    return render(request, 'home/Loudspeakers.html', {
-        'Loudspeakers_products': page_obj,  # Use the paginated page_obj here
-        'Loudspeakers_count': Loudspeakers_products.count(),  # The total count remains the same
+    return render(request, 'home/category.html', {
+        'products': page_obj,
+        'category_key': category_slug,
+        'category_label': valid_categories[category_slug],  # For readable name like "Ultrabooks"
+        'product_count': products.count(),
     })
-
-
-def Mixer_Console_view(request):
-     # Query the products based on category
-    Mixer_Console_products = Product.objects.filter(product_category="Mixer Console")
-
-    # Initialize the paginator with the list of products and the number per page (e.g., 3)
-    paginator = Paginator(Mixer_Console_products, 3)
-
-    # Get the current page number from the GET request (defaults to 1 if not specified)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-    # Pass the paginated products and the total count to the template
-    return render(request, 'home/Mixer_Console.html', {
-        'Mixer_Console_products': page_obj,  # Use the paginated page_obj here
-        'Mixer_Console_count': Mixer_Console_products.count(),  # The total count remains the same
-    })
-
-
-
-def Digital_view(request):
-     # Query the products based on category
-    Digital_products = Product.objects.filter(product_category="Digital")
-
-    # Initialize the paginator with the list of products and the number per page (e.g., 3)
-    paginator = Paginator(Digital_products, 3)
-
-    # Get the current page number from the GET request (defaults to 1 if not specified)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-    # Pass the paginated products and the total count to the template
-    return render(request, 'home/Digital.html', {
-        'Digital_products': page_obj,  # Use the paginated page_obj here
-        'Digital_count': Digital_products.count(),  # The total count remains the same
-    })
-
-
-
-
-
-
-
-
-
-def Turntables_view(request):
-     # Query the products based on category
-    Turntables_products = Product.objects.filter(product_category="Turntables")
-
-    # Initialize the paginator with the list of products and the number per page (e.g., 3)
-    paginator = Paginator(Turntables_products, 3)
-
-    # Get the current page number from the GET request (defaults to 1 if not specified)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-    # Pass the paginated products and the total count to the template
-    return render(request, 'home/Turntables.html', {
-        'Turntables_products': page_obj,  # Use the paginated page_obj here
-        'Turntables_count': Turntables_products.count(),  # The total count remains the same
-    })
-
-
-def Amplifiers_view(request):
-     # Query the products based on category
-    Amplifiers_products = Product.objects.filter(product_category="Amplifiers")
-
-    # Initialize the paginator with the list of products and the number per page (e.g., 3)
-    paginator = Paginator(Amplifiers_products, 3)
-
-    # Get the current page number from the GET request (defaults to 1 if not specified)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-    # Pass the paginated products and the total count to the template
-    return render(request, 'home/Amplifiers.html', {
-        'Amplifiers_products': page_obj,  # Use the paginated page_obj here
-        'Amplifiers_count': Amplifiers_products.count(),  # The total count remains the same
-    })
-
-
 
 def authenticate_view(request):
     return render(request,'auth/authenticate.html')
