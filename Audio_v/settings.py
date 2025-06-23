@@ -33,8 +33,13 @@ SECRET_KEY = 'django-insecure-m!&4sp_$t6jt@tr)8nfw#dt7jb5ufewl+0fd^k9c2($-&(n#!s
 DEBUG = False
 
 # ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = ["audiovisualesmorvedre.com"]
-CSRF_TRUSTED_ORIGINS = ["https://audiovisualesmorvedre.com"]
+ALLOWED_HOSTS = ["audiovisualesmorvedre.com", "www.audiovisualesmorvedre.com"]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://audiovisualesmorvedre.com",
+    "https://www.audiovisualesmorvedre.com",
+]
+
 
 
 
