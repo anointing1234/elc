@@ -43,6 +43,14 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
+
+if not RESEND_API_KEY:
+    print("❌ RESEND_API_KEY not found in environment!")
+else:
+    print("✅ RESEND_API_KEY loaded successfully")
+
+
 # Application definition
 AUTH_USER_MODEL = 'accounts.Account'
 
@@ -63,6 +71,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'accounts',
     'audio',
+    'anymail',  
 ]
 
 MIDDLEWARE = [
@@ -183,14 +192,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.zoho.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = env('EMAIL_HOST_USER')
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.zoho.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'info@audiovisualesmorvedres.com'
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
 
 
 
