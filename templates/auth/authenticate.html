@@ -1,0 +1,272 @@
+{% extends "../core/base/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+        <main class="main">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Login</li>
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+
+           
+            <div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17" style="background-image: url('{% static 'assets/images/products/login.jpeg' %}')">
+                <div class="container">
+                    <div class="form-box">
+                        <div class="form-tab">
+                            <ul class="nav nav-pills nav-fill" role="tablist">
+                                <li class="nav-item">
+                                    <!-- Sign In Tab -->
+                                    <a class="nav-link" id="signin-tab-2" data-toggle="tab" href="#signin-2" role="tab" aria-controls="signin-2" aria-selected="false">Sign In</a>
+                                </li>
+                                <li class="nav-item">
+                                    <!-- Register Tab -->
+                                    <a class="nav-link active" id="register-tab-2" data-toggle="tab" href="#register-2" role="tab" aria-controls="register-2" aria-selected="true">Register</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Sign In Tab -->
+                                <div class="tab-pane fade" id="signin-2" role="tabpanel" aria-labelledby="signin-tab-2">
+                                    <!-- Change the form id to LoginForm -->
+                                    <form method="post" id="LoginForm" onsubmit="return handleLogin(event);">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="singin-email-2">Email address </label>
+                                            {{ login_form.email }}
+                                        </div><!-- End .form-group -->
+                                        <div class="form-group">
+                                            <label for="singin-password-2">Password </label>
+                                            {{ login_form.password }}
+                                        </div><!-- End .form-group -->
+                                        <div class="form-footer">
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>LOG IN</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="signin-remember-2">
+                                                <label class="custom-control-label" for="signin-remember-2">Remember Me</label>
+                                            </div><!-- End .custom-checkbox -->
+                                            <a href="{% url 'forgot_password' %}" class="forgot-link">Forgot Your Password?</a>
+                                        </div><!-- End .form-footer -->
+                                    </form>
+                                </div><!-- End .tab-pane -->
+                        
+                                <!-- Register Tab -->
+                                <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
+                                    <!-- Change the form id to signupform -->
+                                    <form method="post" id="signupform" onsubmit="return signup(event);">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="register-email-2">Your email address </label>
+                                            {{ register_form.email }}
+                                        </div><!-- End .form-group -->
+                                        <div class="form-group">
+                                            <label for="register-email-2">Username </label>
+                                            {{ register_form.username }}
+                                        </div><!-- End .form-group -->
+                                        <div class="form-group">
+                                            <label for="register-password-2">Password </label>
+                                            {{ register_form.password }}
+                                        </div><!-- End .form-group -->
+                                        <div class="form-footer">
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>SIGN UP</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
+                                                <label class="custom-control-label" for="register-policy-2">
+                                                    I agree to the <a href="#">privacy policy</a> *
+                                                </label>
+                                            </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .form-footer -->
+                                    </form>
+                                </div><!-- End .tab-pane -->
+                            </div><!-- End .tab-content -->
+                        </div><!-- End .form-tab -->
+                    </div><!-- End .form-box -->
+
+
+
+                </div><!-- End .container -->
+            </div><!-- End .login-page section-bg -->
+            
+        </main><!-- End .main -->
+
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+        <!-- SweetAlert2 CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+        <!-- SweetAlert2 JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+        <script>
+          function signup(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+
+            // Display a loading spinner with SweetAlert2
+            Swal.fire({
+              title: 'Processing...',
+              text: 'Please wait while we process your registration.',
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading();
+              }
+            });
+
+            // Collect form data from the signupform (now correct for registration)
+            const form = document.getElementById('signupform');
+            const formData = new FormData(form);
+
+            // Send data to the server
+            fetch("{% url 'register' %}", {
+              method: 'POST',
+              body: formData,
+              headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': '{{ csrf_token }}'
+              }
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json();
+              })
+              .then((data) => {
+                Swal.close(); // Close the loading spinner
+                if (data.success) {
+                  // Show success message
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful!',
+                    text: data.message || 'You have successfully registered!',
+                    confirmButtonText: 'Okay'
+                  }).then(() => {
+                    window.location.href = data.redirect_url; // Redirect to the next page
+                  });
+                } else {
+                  // Show error message
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Registration Failed',
+                    text: data.message || 'Please check your details and try again.',
+                    confirmButtonText: 'Okay'
+                  });
+                }
+              })
+              .catch((error) => {
+                Swal.close();
+                Swal.fire({
+                  icon: 'error',
+                  title: 'An Error Occurred',
+                  text: 'Something went wrong. Please try again later.',
+                  confirmButtonText: 'Okay'
+                });
+                console.error('Error:', error);
+              });
+          }
+        </script>
+
+        <script>
+          function handleLogin(event) {
+            event.preventDefault();
+          
+            // Show loading spinner
+            Swal.fire({
+              title: 'Logging in...',
+              text: 'Please wait while we verify your details.',
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading();
+              }
+            });
+          
+            const formData = new FormData(document.getElementById('LoginForm'));
+          
+            fetch("{% url 'login_view' %}", {
+              method: 'POST',
+              body: formData,
+              headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': '{{ csrf_token }}'
+              }
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                Swal.close(); // Close the loading message
+                if (data.success) {
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Welcome!',
+                    text: data.message || 'You have successfully logged in!',
+                    confirmButtonText: 'Okay'
+                  }).then(() => {
+                    window.location.href = data.redirect_url;
+                  });
+                } else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Login failed',
+                    text: data.message || 'Invalid email or password. Please try again.',
+                    confirmButtonText: 'Okay'
+                  });
+                }
+              });
+          }
+        </script>
+
+    
+    <script>
+        // Password toggle visibility for login
+  const togglePasswordLogin = document.getElementById('togglePasswordLogin');
+  const passwordInputLogin = document.querySelector('[name="password"]');
+  const eyeIconLogin = document.getElementById('eyeIconLogin');
+  
+  if (togglePasswordLogin && passwordInputLogin) {
+      togglePasswordLogin.addEventListener('click', function () {
+          const type = passwordInputLogin.type === 'password' ? 'text' : 'password';
+          passwordInputLogin.type = type;
+  
+          if (type === 'password') {
+              eyeIconLogin.classList.remove('bi-eye-slash');
+              eyeIconLogin.classList.add('bi-eye');
+          } else {
+              eyeIconLogin.classList.remove('bi-eye');
+              eyeIconLogin.classList.add('bi-eye-slash');
+          }
+      });
+  }
+  
+  // Password toggle visibility for registration
+  const togglePasswordRegister = document.getElementById('togglePasswordRegister');
+  const passwordInputRegister = document.querySelector('[name="password2"]'); // Assuming this is the name for the registration password
+  const eyeIconRegister = document.getElementById('eyeIconRegister');
+  
+  if (togglePasswordRegister && passwordInputRegister) {
+      togglePasswordRegister.addEventListener('click', function () {
+          const type = passwordInputRegister.type === 'password' ? 'text' : 'password';
+          passwordInputRegister.type = type;
+  
+          if (type === 'password') {
+              eyeIconRegister.classList.remove('bi-eye-slash');
+              eyeIconRegister.classList.add('bi-eye');
+          } else {
+              eyeIconRegister.classList.remove('bi-eye');
+              eyeIconRegister.classList.add('bi-eye-slash');
+          }
+      });
+  }
+      </script>
+
+   
+    {% endblock contents %}   

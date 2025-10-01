@@ -1,0 +1,161 @@
+{% load static %}
+<header class="header header-2 header-intro-clearance">
+  
+
+    <div class="header-middle">
+        <div class="container">
+            <div class="header-left">
+                <button class="mobile-menu-toggler">
+                    <span class="sr-only">Toggle mobile menu</span>
+                    <i class="icon-bars"></i>
+                </button>
+                
+                <a href="{% url 'home' %}" class="logo">
+                    <img style="width:200px;" src="{% static 'assets/logo/am_logo_black2.webp' %}" alt="Molla Logo" width="100" height="100">
+                </a>
+            </div><!-- End .header-left -->
+
+            <div class="header-center">
+                <div class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
+                    <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+                    <form class="search__form" action="{% url 'product_search' %}" method="GET">
+                        <div class="header-search-wrapper search-wrapper-wide">
+                            <label for="q" class="sr-only">Search</label>
+                            <input type="search" class="form-control" name="search" id="q" placeholder="Search product ..." required>
+                            <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                        </div><!-- End .header-search-wrapper -->
+                    </form>
+                </div><!-- End .header-search -->
+            </div>
+
+
+            <div class="header-right">
+            {% if request.user.is_authenticated %}
+                <div class="account">
+                    <a  title="My account">
+                        <div class="icon">
+                            <i class="icon-user"></i>
+                        </div>
+                        <p>{{ request.user.username }}</p>
+                    </a>
+                </div><!-- End .compare-dropdown -->
+              {% endif %}
+
+
+              
+
+                {% comment %} <div class="wishlist">
+                    <a href="wishlist.html" title="Wishlist">
+                        <div class="icon">
+                            <i class="icon-heart-o"></i>
+                            <span class="wishlist-count badge">3</span>
+                        </div>
+                        <p>Wishlist</p>
+                    </a>
+                </div><!-- End .compare-dropdown --> {% endcomment %}
+
+                <div class="cart-dropdown">
+                    <a href="{% url 'cart' %}" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-display="static">
+                        <div class="icon">
+                            <i class="icon-shopping-cart"></i>
+                            <span class="cart-count" id="cart-count1">0</span>
+                        </div>
+                        <p>Cart</p>
+                    </a>
+                </div><!-- End .cart-dropdown -->
+            </div><!-- End .header-right -->
+        </div><!-- End .container -->
+    </div><!-- End .header-middle -->
+
+    <div class="header-bottom sticky-header">
+        <div class="container">
+            <div class="header-left">
+                <div class="dropdown category-dropdown">
+                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Browse Categories">
+                        Browse Categories
+                    </a>
+                    <div class="dropdown-menu">
+                        <nav class="side-nav">
+                            <ul class="menu-vertical sf-arrows">
+                                <li class="item-lead"><a href="{% url 'Amplifiers' %}">Amplifiers</a></li>
+                                <li class="item-lead"><a href="{% url 'Digital' %}">Digital</a></li>
+                                <li class="item-lead"><a href="{% url 'Loudspeakers' %}">Loudspeakers</a></li>
+                                <li class="item-lead"><a href="{% url 'Mixer_Console' %}">Mixer Console</a></li>
+                                <li class="item-lead"><a href="{% url 'Turntables' %}">Turntables</a></li>
+                            </ul><!-- End .menu-vertical -->
+                        </nav><!-- End .side-nav -->
+                    </div><!-- End .dropdown-menu -->
+                </div><!-- End .category-dropdown -->
+            </div><!-- End .header-left -->
+
+            <div class="header-center">
+                <nav class="main-nav">
+                    <ul class="menu sf-arrows">
+                        <li class="megamenu-container active">
+                            <a href="{% url 'home' %}" class="">Home</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'terms_condition' %}" >About</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'refund_policy' %}" >Refund Policy</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Digital' %}" >Electronic Store</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contact' %}">Contact</a>
+                        </li>
+                        {% if not request.user.is_authenticated %}
+                      
+                        {% else %}
+                        <li>
+                            <a href="{% url 'myorders' %}">Orders</a>
+                        </li>
+                    <li>
+                        <a href="{% url 'logout_view' %}">Log out</a>
+                    </li>
+                  
+                    {% endif %}
+
+                        </li>
+                    </ul><!-- End .menu -->
+                </nav><!-- End .main-nav -->
+            </div><!-- End .header-center -->
+
+            <div class="header-right">
+                <i class="la la-tv"></i>
+                <p>Tech Sale <span class="highlight">&nbsp;Up to 40% Off</span></p>
+            </div>
+            
+        </div><!-- End .container -->
+    </div><!-- End .header-bottom -->
+</header><!-- End .header -->
+
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Function to fetch the cart count
+        function updateCartCount() {
+            fetch("{% url 'get_cart_count' %}")  // Replace 'get_cart_count' with your actual URL name
+                .then(response => response.json())
+                .then(data => {
+                    const cartCountElement = document.getElementById("cart-count1");
+                    if (cartCountElement) {
+                        cartCountElement.textContent = data.cart_count; // Update the cart count
+                    }
+                })
+                .catch(error => console.error("Error fetching cart count:", error));
+        }
+
+        // Call updateCartCount on page load
+        updateCartCount();
+
+        // Optionally, re-fetch cart count at intervals or trigger it on specific actions
+    });
+
+</script>
+

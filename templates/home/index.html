@@ -1,0 +1,622 @@
+{% extends "../core/base/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+
+<style>
+    /* Default styles for larger screens */
+    .responsive-product-img {
+        height: 200px;
+        object-fit: cover;
+    }
+    .responsive-product-title {
+        font-size: 1.3rem;
+    }
+    .responsive-product-price {
+        font-size: 1.7rem;
+    }
+    .responsive-btn {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+  
+    /* Smaller screen adjustments */
+    @media (max-width: 576px) {
+        .responsive-product-img {
+            height: 150px;
+        }
+        .responsive-product-title {
+            font-size: 0.9rem;
+        }
+        .responsive-product-price {
+            font-size: 0.8rem;
+        }
+        .responsive-btn {
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+        }
+    }
+  </style>
+  
+
+        <main class="main">
+            <div class="intro-slider-container">
+                <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false, "autoplay": true, "autoplayTimeout": 2000, "autoplayHoverPause": true}'>
+                    <div class="intro-slide" style="background-image: url('{% static "assets/images/backgrounds/electronic_wall_3.jpg" %}');">
+                        <div class="container intro-content">
+                            <h3 class="intro-subtitle">Latest Gadgets</h3><!-- End .intro-subtitle -->
+                            <h1 class="intro-title">Experience Innovation <br>With Cutting-Edge Electronics</h1><!-- End .intro-title -->
+                            <a href="{% url 'Digital' %}" class="btn btn-primary">
+                                <span>Shop Now</span>
+                                <i class="icon-long-arrow-right"></i>
+                            </a>
+                        </div><!-- End .container intro-content -->
+                    </div><!-- End .intro-slide -->
+                
+            
+                    <div class="intro-slide" style="background-image: url('{% static "assets/images/backgrounds/electronic_wall_2.jpg" %}');">
+                        <div class="container intro-content">
+                            <h3 class="intro-subtitle">Electronics Deals</h3><!-- End .intro-subtitle -->
+                            <h1 class="intro-title">Top Brands, Unbeatable Prices <br><span class="text-primary"><sup> €</sup>Special Offers</span></h1><!-- End .intro-title -->
+                            <a href="{% url 'Loudspeakers' %}" class="btn btn-primary">
+                                <span>Shop Now</span>
+                                <i class="icon-long-arrow-right"></i>
+                            </a>
+                        </div><!-- End .container intro-content -->
+                    </div><!-- End .intro-slide -->
+                  
+            
+                    <!-- Add more slides as needed -->
+                </div><!-- End .owl-carousel owl-simple -->
+            
+                <span class="slider-loader text-white"></span><!-- End .slider-loader -->
+            </div><!-- End .intro-slider-container -->
+     
+
+            <div class="mb-3 mb-lg-5"></div><!-- End .mb-3 mb-lg-5 -->
+
+            
+            <div class="banner-group"> 
+                <div class="container">
+                    <div class="row">
+                        <!-- Banner for Amplifiers Clearance Sale -->
+                        <div class="col-md-12 col-lg-5">
+                            <div class="banner banner-large banner-overlay banner-overlay-light">
+                                <a href="#">
+                                    <img src="{% static 'assets/images/brands/Best-Amplifiers-For-Home-Hi-Fi-2023-Lead.jpg' %}" alt="Amplifiers Clearance" style="filter: brightness(50%);">
+                                </a>
+                                <div class="banner-content banner-content-top">
+                                    <h4 class="banner-subtitle text-white">Clearance Sale</h4><!-- End .banner-subtitle -->
+                                    <h3 class="banner-title text-white">Amplifiers</h3><!-- End .banner-title -->
+                                <!-- End .banner-text -->
+                                    <a href="{% url 'Amplifiers' %}" class="btn btn-outline-white banner-link">
+                                        Shop Now<i class="icon-long-arrow-right"></i>
+                                    </a>
+                                </div><!-- End .banner-content -->
+                            </div><!-- End .banner -->
+                        </div><!-- End .col-lg-5 -->
+                     
+                    
+                        <!-- Banner for Digital Devices Offer -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="banner banner-overlay">
+                                <a href="#">
+                                    <img src="{% static 'assets/images/brands/degital_device.jpeg' %}" alt="Digital Devices Sale" style="filter: brightness(50%);">
+                                </a>
+                                <div class="banner-content banner-content-bottom">
+                                    <h4 class="banner-subtitle text-grey">On Sale</h4><!-- End .banner-subtitle -->
+                                    <h3 class="banner-title text-white">Digital Devices</h3><!-- End .banner-title -->
+                                    <!-- End .banner-text -->
+                                    <a href="{% url 'Digital' %}" class="btn btn-outline-white banner-link">
+                                        Discover Now<i class="icon-long-arrow-right"></i>
+                                    </a>
+                                </div><!-- End .banner-content -->
+                            </div><!-- End .banner -->
+                        </div><!-- End .col-lg-3 -->
+
+                        <!-- Banner for Loudspeakers & Mixer Consoles -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="banner banner-overlay">
+                                <a href="#">
+                                    <img src="{% static 'assets/images/brands/Loud_speakers_mixes.jpg' %}" alt="Loudspeakers & Mixer Consoles" style="filter: brightness(50%);">
+                                </a>
+                                <div class="banner-content banner-content-top">
+                                    <h4 class="banner-subtitle text-grey">New Arrivals</h4><!-- End .banner-subtitle -->
+                                    <h3 class="banner-title text-white">Loudspeakers & Mixer Consoles</h3><!-- End .banner-title -->
+                                    <a href="{% url 'Loudspeakers' %}" class="btn btn-outline-white banner-link">
+                                        Discover Now<i class="icon-long-arrow-right"></i>
+                                    </a>
+                                </div><!-- End .banner-content -->
+                            </div><!-- End .banner -->
+
+                    
+                            <!-- Banner for Turntables Sale -->
+                            <div class="banner banner-overlay banner-overlay-light">
+                                <a href="#">
+                                    <img src="{% static 'assets/images/brands/turnable.webp' %}" alt="Turntables Offer" style="filter: brightness(50%);">
+                                </a>
+                                <div class="banner-content banner-content-top">
+                                    <h4 class="banner-subtitle text-white">On Sale</h4><!-- End .banner-subtitle -->
+                                    <h3 class="banner-title text-white">Turntables</h3><!-- End .banner-title -->
+                                    <a href="{% url 'Turntables' %}" class="btn btn-outline-white banner-link">
+                                        Shop Now<i class="icon-long-arrow-right"></i>
+                                    </a>
+                                </div><!-- End .banner-content -->
+                            </div><!-- End .banner -->
+
+                        </div><!-- End .col-lg-4 -->
+                    </div><!-- End .row -->
+                    
+
+                </div><!-- End .container -->
+            </div><!-- End .banner-group -->
+            
+
+
+            <div class="mb-3"></div><!-- End .mb-6 -->
+
+            <div class="container">
+                <ul class="nav nav-pills nav-border-anim nav-big justify-content-center mb-3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="products-featured-link" data-toggle="tab" href="#products-featured-tab" role="tab" aria-controls="products-featured-tab" aria-selected="true">Featured</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="products-sale-link" data-toggle="tab" href="#products-sale-tab" role="tab" aria-controls="products-sale-tab" aria-selected="false">On Sale</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="products-top-link" data-toggle="tab" href="#products-top-tab" role="tab" aria-controls="products-top-tab" aria-selected="false">Top Rated</a>
+                    </li>
+                </ul>
+            </div><!-- End .container -->
+
+            <div class="container-fluid">
+                <div class="tab-content tab-content-carousel"> 
+
+
+
+                    <div class="tab-pane p-0 fade show active" id="products-featured-tab" role="tabpanel" aria-labelledby="products-featured-link">
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                            data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": { "items":2 },
+                                    "480": { "items":2 },
+                                    "768": { "items":3 },
+                                    "992": { "items":4 },
+                                    "1200": { "items":5 },
+                                    "1600": { "items":6, "nav": true }
+                                }
+                            }'>
+                            {% for product in featured_products %}
+                            <div class="product product-11 text-center">
+                                <figure class="product-media">
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img style="height: 250px; display: flex; align-items: center; justify-content: center;" src="{{ product.image.url }}" alt="Product image" class="responsive-product-img">
+                                        <img style="height: 250px; display: flex; align-items: center; justify-content: center;" src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-hover responsive-product-img">
+                                    </a>
+                                 <!-- End .product-action-vertical -->
+                                </figure><!-- End .product-media -->
+                                <div class="product-body">
+                                    <h3 class="product-title responsive-product-title"><a href="  {% url 'product_detail' product.id %}">{{ product.name }}</a></h3><!-- End .product-title -->
+                                    <div class="product-price responsive-product-price">
+                                       €{{ product.price|floatformat:2|intcomma }}
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                                <div class="product-action">
+                                    <button class="btn-product btn-cart add-to-cart-btn" type="button"
+                                    data-product-id="{{ product.id }}"
+                                    data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
+                                    data-csrf-token="{{ csrf_token }}">
+                                <span class="btn-text">add to cart</span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
+                                </div><!-- End .product-action -->
+                            </div><!-- End .product -->
+                            {% endfor %}
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- End .tab-pane -->
+                    
+                    
+                    <div class="tab-pane p-0 fade" id="products-sale-tab" role="tabpanel" aria-labelledby="products-sale-link">
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                            data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": { "items":2 },
+                                    "480": { "items":2 },
+                                    "768": { "items":3 },
+                                    "992": { "items":4 },
+                                    "1200": { "items":5 },
+                                    "1600": { "items":6, "nav": true }
+                                }
+                            }'>
+                            {% for product in on_sale %}
+                            <div class="product product-11 text-center">
+                                <figure class="product-media">
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img style="height: 250px; display: flex; align-items: center; justify-content: center;" src="{{ product.image.url }}" alt="Product image" class="responsive-product-img">
+                                        <img style="height: 250px; display: flex; align-items: center; justify-content: center;" src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-hover responsive-product-img">
+                                    </a>
+                                 <!-- End .product-action-vertical -->
+                                </figure><!-- End .product-media -->
+                                <div class="product-body">
+                                    <h3 class="product-title responsive-product-title"><a href="  {% url 'product_detail' product.id %}">{{ product.name }}</a></h3><!-- End .product-title -->
+                                    <div class="product-price responsive-product-price">
+                                       €{{ product.price|floatformat:2|intcomma }}
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                                <div class="product-action">
+                                    <button class="btn-product btn-cart add-to-cart-btn" type="button"
+                                    data-product-id="{{ product.id }}"
+                                    data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
+                                    data-csrf-token="{{ csrf_token }}">
+                                <span class="btn-text">add to cart</span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
+                                </div><!-- End .product-action -->
+                            </div><!-- End .product -->
+                            {% endfor %}
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- End .tab-pane -->
+                    
+
+
+
+
+                    <div class="tab-pane p-0 fade" id="products-top-tab" role="tabpanel" aria-labelledby="products-top-link">
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                            data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": { "items":2 },
+                                    "480": { "items":2 },
+                                    "768": { "items":3 },
+                                    "992": { "items":4 },
+                                    "1200": { "items":5 },
+                                    "1600": { "items":6, "nav": true }
+                                }
+                            }'>
+                            {% for product in Top_rated %}
+                            <div class="product product-11 text-center">
+                                <figure class="product-media">
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img style="height: 250px; display: flex; align-items: center; justify-content: center;" src="{{ product.image.url }}" alt="{{ product.name }}" class="responsive-product-img">
+                                        <img style="height: 250px; display: flex; align-items: center; justify-content: center;" src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-hover responsive-product-img">
+                                    </a>
+                                 <!-- End .product-action-vertical -->
+                                </figure><!-- End .product-media -->
+                                <div class="product-body">
+                                    <h3 class="product-title responsive-product-title"><a href="  {% url 'product_detail' product.id %}">{{ product.name }}</a></h3><!-- End .product-title -->
+                                    <div class="product-price responsive-product-price">
+                                       €{{ product.price|floatformat:2|intcomma }}
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                                <div class="product-action">
+                                    <button class="btn-product btn-cart add-to-cart-btn" type="button"
+                            data-product-id="{{ product.id }}"
+                            data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
+                            data-csrf-token="{{ csrf_token }}">
+                        <span class="btn-text">add to cart</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    </button>
+                                </div><!-- End .product-action -->
+                            </div><!-- End .product -->
+                            {% endfor %}
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- End .tab-pane -->
+                    
+                </div><!-- End .tab-content -->
+            </div><!-- End .container-fluid -->
+
+            <div class="mb-5"></div><!-- End .mb-5 -->
+
+            <div class="bg-light deal-container pt-5 pb-3 mb-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="deal">
+                                <div class="deal-content">
+                                    <h4>Limited Stock</h4>
+                                    <h2>Deal of the Day</h2>
+            
+                                    <h3 class="product-title"><a>Sonic Boom Loudspeakers</a></h3><!-- End .product-title -->
+            
+                                    <div class="product-price">
+                                        <span class="new-price"> €24,900.00</span>
+                                        <span class="old-price">Was€34,900.00</span>
+                                    </div><!-- End .product-price -->
+            
+                                    <div class="deal-countdown" data-until="+10h"></div><!-- End .deal-countdown -->
+            
+                               
+                                    <a href="{% url 'Loudspeakers' %}" class="btn btn-primary">
+                                        <span>Shop Now</span><i class="icon-long-arrow-right"></i>
+                                    </a>
+                                </div><!-- End .deal-content -->
+                                <div class="deal-image">
+                                    <a>
+                                        <img src="{% static 'assets/images/products/sunic_boom.jpg' %}" alt="Sonic Boom Loudspeakers">
+                                    </a>
+                                </div><!-- End .deal-image -->
+                            </div><!-- End .deal -->
+                        </div><!-- End .col-lg-9 -->
+            
+                        <div class="col-lg-3">
+                            <div class="banner banner-overlay banner-overlay-light bg-white text-center d-none d-lg-block" style="position: relative; height: 400px;">
+                                <a href="#">
+                                    <img src="{% static 'assets/images/products/pro_turnable.jpeg' %}" alt="Turntable Deal" style="width: 100%; height: 300px;">
+                                </a>
+                                <div class="banner-content banner-content-top banner-content-center" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                    <h4 class="banner-subtitle text-white">Top Choice</h4><!-- End .banner-subtitle -->
+                                    <h3 class="banner-title text-white">Pro Turntable</h3><!-- End .banner-title -->
+                                    <div class="banner-text text-primary"> €24,000.99</div><!-- End .banner-text -->
+                                    <a href="{% url 'Turntables' %}" class="btn btn-outline-white banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
+                                </div><!-- End .banner-content -->
+                          
+                            </div><!-- End .banner -->
+                        </div><!-- End .col-lg-3 -->
+                        
+                    </div><!-- End .row -->
+                </div><!-- End .container -->
+            </div><!-- End .bg-light -->
+            
+
+            <div class="mb-6"></div><!-- End .mb-6 -->
+
+            <div class="container">
+                <div class="heading heading-center mb-3">
+                    <h2 class="title">Top Selling Products</h2><!-- End .title -->
+
+                    <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="top-all-link" data-toggle="tab" href="#top-all-tab" role="tab" aria-controls="top-all-tab" aria-selected="true">All</a>
+                        </li>
+                        <li class="nav-item"> 
+                            <a class="nav-link" id="top-Loudspeakers-link" data-toggle="tab" href="#top-fur-tab" role="tab" aria-controls="top-fur-tab" aria-selected="false">Loudspeakers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="top-Turntables-link" data-toggle="tab" href="#top-turntable-tab" role="tab" aria-controls="top-turntable-tab" aria-selected="false">Turntables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="top-Digital-link" data-toggle="tab" href="#top-digital-tab" role="tab" aria-controls="top-digital-tab" aria-selected="false">Digital</a>
+                        </li>
+                        
+                    </ul>
+                </div><!-- End .heading -->
+
+                <div class="tab-content">
+
+
+                    <div class="tab-pane p-0 fade show active" id="top-all-tab" role="tabpanel" aria-labelledby="top-all-link">
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                            data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": { "items": 1 },
+                                    "480": { "items": 2 },
+                                    "768": { "items": 3 },
+                                    "992": { "items": 4 }
+                                }
+                            }'>
+                            {% for product in all_products %}
+                            <div class="product product-11 text-center" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                                <figure class="product-media" style="height: 250px; display: flex; align-items: center; justify-content: center;">
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image img-fluid" style="height: 100%; width: 100%; object-fit: cover;">
+                                    </a>
+                                 
+                                </figure>
+                
+                                <div class="product-body" style="padding: 15px;">
+                                    <div class="product-cat">
+                                        <a href="#">{{ product.product_category }}</a>
+                                    </div>
+                                    <h3 class="product-title">
+                                        <a href="">{{ product.name }}</a>
+                                    </h3>
+                                    <div class="product-price">
+                                       €{{ product.price|floatformat:2|intcomma }}
+                                    </div>
+                                </div>
+                
+                                <div class="product-action" style="padding-bottom: 15px;">
+                                    <button class="btn-product btn-cart add-to-cart-btn" type="button"
+                                    data-product-id="{{ product.id }}"
+                                    data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
+                                    data-csrf-token="{{ csrf_token }}">
+                                <span class="btn-text">add to cart</span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
+                                </div>
+                            </div><!-- End .product -->
+                            {% endfor %}
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- End .tab-pane -->
+
+                    <div class="tab-pane p-0 fade" id="top-fur-tab" role="tabpanel" aria-labelledby="top-Loudspeakers-link">
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                            data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": { "items": 1 },
+                                    "480": { "items": 2 },
+                                    "768": { "items": 3 },
+                                    "992": { "items": 4 }
+                                }
+                            }'>
+                            {% for product in Loudspeakers %}
+                            <div class="product product-11 text-center" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                                <figure class="product-media" style="height: 250px; display: flex; align-items: center; justify-content: center;">
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image img-fluid" style="height: 100%; width: 100%; object-fit: cover;">
+                                    </a>
+                                 
+                                </figure>
+                
+                                <div class="product-body" style="padding: 15px;">
+                                    <div class="product-cat">
+                                        <a href="#">{{ product.product_category }}</a>
+                                    </div>
+                                    <h3 class="product-title">
+                                        <a href="">{{ product.name }}</a>
+                                    </h3>
+                                    <div class="product-price">
+                                       €{{ product.price|floatformat:2|intcomma }}
+                                    </div>
+                                </div>
+                
+                                <div class="product-action" style="padding-bottom: 15px;">
+                                    <button class="btn-product btn-cart add-to-cart-btn" type="button"
+                                    data-product-id="{{ product.id }}"
+                                    data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
+                                    data-csrf-token="{{ csrf_token }}">
+                                <span class="btn-text">add to cart</span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
+                                </div>
+                            </div><!-- End .product -->
+                            {% endfor %}
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- .End .tab-pane -->
+
+
+
+                 <!-- Corrected Digital Tab -->
+<div class="tab-pane p-0 fade" id="top-digital-tab" role="tabpanel" aria-labelledby="top-Digital-link">
+    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+    data-owl-options='{
+        "nav": false, 
+        "dots": true,
+        "margin": 20,
+        "loop": false,
+        "responsive": {
+            "0": { "items": 1 },
+            "480": { "items": 2 },
+            "768": { "items": 3 },
+            "992": { "items": 4 }
+        }
+    }'>
+    {% for product in Digital %}
+    <div class="product product-11 text-center">
+        <figure class="product-media">
+            <a href="{% url 'product_detail' product.id %}">
+                <img style="height: 250px; display: flex; align-items: center; justify-content: center;" src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+            </a>
+      
+        </figure>
+        <div class="product-body">
+            <div class="product-cat">
+                <a href="#">{{ product.product_category }}</a>
+            </div>
+            <h3 class="product-title">
+                <a href="">{{ product.name }}</a>
+            </h3>
+            <div class="product-price">
+               €{{ product.price|floatformat:2|intcomma }}
+            </div>
+        </div>
+        <div class="product-action">
+            <button class="btn-product btn-cart add-to-cart-btn" type="button"
+            data-product-id="{{ product.id }}"
+            data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
+            data-csrf-token="{{ csrf_token }}">
+        <span class="btn-text">add to cart</span>
+        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+    </button>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+
+
+<!-- Corrected Turntables Tab -->
+<div class="tab-pane p-0 fade" id="top-turntable-tab" role="tabpanel" aria-labelledby="top-Turntables-link">
+    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+    data-owl-options='{
+        "nav": false, 
+        "dots": true,
+        "margin": 20,
+        "loop": false,
+        "responsive": {
+            "0": { "items": 1 },
+            "480": { "items": 2 },
+            "768": { "items": 3 },
+            "992": { "items": 4 }
+        }
+    }'>
+    {% for product in Turnatables %}
+    <div class="product product-11 text-center">
+        <figure class="product-media">
+            <a href="{% url 'product_detail' product.id %}">
+                <img style="height: 250px; display: flex; align-items: center; justify-content: center;" src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+            </a>
+      
+        </figure>
+        <div class="product-body">
+            <div class="product-cat">
+                <a href="#">{{ product.product_category }}</a>
+            </div>
+            <h3 class="product-title">
+                <a href="">{{ product.name }}</a>
+            </h3>
+            <div class="product-price">
+               €{{ product.price|floatformat:2|intcomma }}
+            </div>
+        </div>
+        <div class="product-action">
+            <button class="btn-product btn-cart add-to-cart-btn" type="button"
+            data-product-id="{{ product.id }}"
+            data-add-to-cart-url="{% url 'add_to_cart' product.id %}"
+            data-csrf-token="{{ csrf_token }}">
+        <span class="btn-text">add to cart</span>
+        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+    </button>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+                </div><!-- End .tab-content -->
+            </div><!-- End .container -->
+
+            <div class="container">
+                <hr class="mt-1 mb-6">
+            </div><!-- End .container -->
+            
+
+
+        </main><!-- End .main -->
+
+     
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+   
+ {% endblock contents %}     

@@ -1,0 +1,146 @@
+{% extends "../core/base/base.html" %} 
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="  {% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item active" aria-current="page">About us</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+    
+    <div class="container">
+        <div class="page-header page-header-big text-center" style="background-image: url('{% static 'assets/images/products/about_png.jpg' %}')">
+            <h1 class="page-title text-white">About us<span class="text-white">Who we are</span></h1>
+        </div><!-- End .page-header -->
+    </div><!-- End .container -->
+
+    <div class="page-content pb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-3 mb-lg-0">
+                    <h2 class="title">Our Vision</h2><!-- End .title -->
+                    <p>
+                        At <strong>AUDIOVISUALES MORVEDRE SL</strong>, we envision a future where cutting‐edge audiovisual technology transforms everyday living. 
+                        We are dedicated to providing innovative, high‑quality electronic solutions that enhance your entertainment, productivity, and lifestyle.
+                    </p>
+                </div><!-- End .col-lg-6 -->
+                
+                <div class="col-lg-6">
+                    <h2 class="title">Our Mission</h2><!-- End .title -->
+                    <p>
+                        Our mission is to bring the latest in audiovisual and electronic products to our customers, ensuring superior performance, reliability, and style. 
+                        We strive to deliver an exceptional shopping experience and ongoing support so you can enjoy the best that modern technology has to offer.
+                    </p>
+                </div><!-- End .col-lg-6 -->
+            </div><!-- End .row -->
+
+            <div class="mb-5"></div><!-- End .mb-4 -->
+        </div><!-- End .container -->
+
+        <div class="bg-light-2 pt-6 pb-5 mb-6 mb-lg-8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 mb-3 mb-lg-0">
+                        <h2 class="title">Who We Are</h2><!-- End .title -->
+                        <p class="lead text-primary mb-3">
+                            AUDIOVISUALES MORVEDRE SL is your one‑stop destination for premium electronics and audiovisual solutions.
+                        </p><!-- End .lead text-primary -->
+                        <p class="mb-2">
+                            With decades of expertise and a passion for innovation, our team is committed to curating the finest range of products—from high‑performance amplifiers to state‑of‑the‑art digital systems—that empower you to experience the best in audio and visual technology.
+                        </p>
+
+                      
+                    </div><!-- End .col-lg-5 -->
+
+                    <div class="col-lg-6 offset-lg-1">
+                        <div class="about-images">
+                            <img src="{% static 'assets/images/products/img-1.webp' %}" alt="Our team" class="about-img-front">
+                            <img src="{% static 'assets/images/products/img-2.jpg' %}" alt="Our facility" class="about-img-back">
+                        </div><!-- End .about-images -->
+                    </div><!-- End .col-lg-6 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .bg-light-2 pt-6 pb-6 -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="brands-text">
+                        <h2 class="title">The world's premium electronics and design brands in one destination.</h2><!-- End .title -->
+                        <p>
+                            We partner with the most renowned brands in the industry, ensuring that you have access to the best in technology, innovation, and design.
+                        </p>
+                    </div><!-- End .brands-text -->
+                </div><!-- End .col-lg-5 -->
+                <div class="col-lg-7">
+                    <div class="brands-display">
+                        <div class="row justify-content-center">
+                            <div class="col-6 col-sm-4">
+                                <img src="{% static 'assets/images/products/electronics_brand.webp' %}" alt="Our team" class="about-img-front">
+                            </div><!-- End .col-sm-4 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .brands-display -->
+                </div><!-- End .col-lg-7 -->
+            </div><!-- End .row -->
+
+            <hr class="mt-4 mb-6">
+        </div><!-- End .container -->
+
+        <div class="mb-2"></div><!-- End .mb-2 -->
+
+        <div class="about-testimonials bg-light-2 pt-6 pb-6">
+            <div class="container">
+                <h2 class="title text-center mb-3">What Our Customers Say</h2><!-- End .title text-center -->
+
+                <div class="owl-carousel owl-simple owl-testimonials-photo" data-toggle="owl" 
+                    data-owl-options='{
+                        "nav": false, 
+                        "dots": true,
+                        "margin": 20,
+                        "loop": false,
+                        "responsive": {
+                            "1200": {
+                                "nav": true
+                            }
+                        }
+                    }'>
+                    <blockquote class="testimonial text-center">
+                        <img src="{% static 'assets/images/testimonials/user-1.jpg' %}" alt="user">
+                        <p>
+                            “ I love AUDIOVISUALES MORVEDRE SL! Their innovative audiovisual solutions have completely transformed my home theater experience. ”
+                        </p>
+                        <cite>
+                            Jenson Gregory
+                            <span>Customer</span>
+                        </cite>
+                    </blockquote><!-- End .testimonial -->
+
+                    <blockquote class="testimonial text-center">
+                        <img src="{% static 'assets/images/testimonials/user-2.jpg' %}" alt="user">
+                        <p>
+                            “ The quality and design are unmatched. AUDIOVISUALES MORVEDRE SL offers top-notch products and exceptional service. ”
+                        </p>
+                        <cite>
+                            Victoria Ventura
+                            <span>Customer</span>
+                        </cite>
+                    </blockquote><!-- End .testimonial -->
+                </div><!-- End .owl-carousel -->
+            </div><!-- End .container -->
+        </div><!-- End .about-testimonials -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->
+
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay"></div><!-- End .mobile-menu-overlay -->
+
+{% endblock contents %}
