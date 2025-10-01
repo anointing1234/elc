@@ -30,15 +30,15 @@ environ.Env.read_env(os.path.join(BASE_DIR,'file.env'))
 SECRET_KEY = 'django-insecure-m!&4sp_$t6jt@tr)8nfw#dt7jb5ufewl+0fd^k9c2($-&(n#!s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-# ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = ["audiovisualesmorvedres.com", "www.audiovisualesmorvedres.com"]
+ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["audiovisualesmorvedres.com", "www.audiovisualesmorvedres.com"]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://audiovisualesmorvedres.com",
-    "https://www.audiovisualesmorvedres.com",
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://audiovisualesmorvedres.com",
+#     "https://www.audiovisualesmorvedres.com",
+# ]
 
 
 
@@ -197,6 +197,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_PORT = 587
 # EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
 DEFAULT_FROM_EMAIL = 'info@audiovisualesmorvedres.com'
 # EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False

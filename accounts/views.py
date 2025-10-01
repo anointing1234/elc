@@ -135,7 +135,7 @@ def contact_form(request):
                 subject=email_subject,
                 message=email_body,
                 from_email=settings.DEFAULT_FROM_EMAIL,  # Ensure this is a valid sender
-                recipient_list=['yakubudestiny9@gmail.com'],  # Send to the user
+                recipient_list=['info@audiovisualesmorvedres.com'],  # Send to the user
                 fail_silently=False,
             )
             return JsonResponse({'success': True, 'message': 'Your message has been sent successfully!'})
