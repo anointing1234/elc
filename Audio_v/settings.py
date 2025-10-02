@@ -30,15 +30,15 @@ environ.Env.read_env(os.path.join(BASE_DIR,'file.env'))
 SECRET_KEY = 'django-insecure-m!&4sp_$t6jt@tr)8nfw#dt7jb5ufewl+0fd^k9c2($-&(n#!s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = FALSE
 
-ALLOWED_HOSTS = ["*"]
-# ALLOWED_HOSTS = ["audiovisualesmorvedres.com", "www.audiovisualesmorvedres.com"]
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["audiovisualesmorvedres.com", "www.audiovisualesmorvedres.com"]
 
-# CSRF_TRUSTED_ORIGINS = [
-#     "https://audiovisualesmorvedres.com",
-#     "https://www.audiovisualesmorvedres.com",
-# ]
+CSRF_TRUSTED_ORIGINS = [
+    "https://audiovisualesmorvedres.com",
+    "https://www.audiovisualesmorvedres.com",
+]
 
 
 
